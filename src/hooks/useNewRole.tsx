@@ -1,7 +1,7 @@
 import { useCallback, useRef, useState } from "react";
 import { gql, useMutation, Reference } from "@apollo/client";
 import { camelCase } from "camel-case";
-import { formatError } from "../util/error";
+import { formatError } from "util/error";
 import * as models from "models";
 
 export type Props = {

@@ -1,7 +1,7 @@
 import { useContext, useCallback } from "react";
 import { gql, useMutation } from "@apollo/client";
 import PendingChangesContext from "@amp-components/VersionControl/PendingChangesContext";
-import { formatError } from "../util/error";
+import { formatError } from "util/error";
 import { GET_PENDING_CHANGES } from "@hooks/usePendingChanges";
 import { GET_LAST_COMMIT } from "@hooks/useLastCommit";
 

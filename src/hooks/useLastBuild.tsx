@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { isEmpty } from "lodash";
-import { formatError } from "../util/error";
+import { formatError } from "util/error";
 import * as models from "models";
 
 type TData = {

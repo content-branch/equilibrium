@@ -2,14 +2,14 @@ import { useCallback, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { gql, useMutation, Reference } from "@apollo/client";
 import { pascalCase } from "pascal-case";
-import { formatError } from "../util/error";
+import { formatError } from "util/error";
 import * as models from "models";
 import {
   generatePluralDisplayName,
   generateSingularDisplayName,
 } from "../Components/PluralDisplayNameField";
 import PendingChangesContext from "@amp-components/VersionControl/PendingChangesContext";
-import { useTracking } from "../util/analytics";
+import { useTracking } from "util/analytics";
 
 export type CreateEntityType = Omit<models.EntityCreateInput, "app">;
 

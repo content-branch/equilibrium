@@ -1,9 +1,9 @@
 import { useCallback, useRef, useContext, useState } from "react";
 import { gql, useMutation, Reference } from "@apollo/client";
-import { formatError } from "../util/error";
+import { formatError } from "util/error";
 import * as models from "models";
 import PendingChangesContext from "@amp-components/VersionControl/PendingChangesContext";
-import { useTracking } from "../util/analytics";
+import { useTracking } from "util/analytics";
 
 export type Props = {
   entity: models.Entity;

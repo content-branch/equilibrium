@@ -2,9 +2,9 @@ import { useCallback, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { gql, useMutation } from "@apollo/client";
 import { GET_APPLICATIONS } from "@hooks/useApplicationList";
-import { formatError } from "../util/error";
+import { formatError } from "util/error";
 import * as models from "models";
-import { useTracking } from "../util/analytics";
+import { useTracking } from "util/analytics";
 
 
 type Values = {

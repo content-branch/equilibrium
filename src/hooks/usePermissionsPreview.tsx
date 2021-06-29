@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { gql, useQuery } from "@apollo/client";
-import { formatError } from "../util/error";
+import { formatError } from "util/error";
 
 import * as models from "models";
 import * as permissionsTypes from "@amp-components/Permissions/types";

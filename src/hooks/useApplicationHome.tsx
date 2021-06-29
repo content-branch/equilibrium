@@ -1,7 +1,7 @@
 import { match, useLocation } from "react-router-dom";
 import { gql, useQuery } from "@apollo/client";
 import * as models from "models";
-import { formatError } from "../util/error";
+import { formatError } from "util/error";
 import useNavigationTabs from "@hooks/useNavigationTabs";
 
 export type Props = {

@@ -2,7 +2,7 @@ import { useCallback, useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { gql, useMutation } from "@apollo/client";
 import { setToken } from "../authentication/authentication";
-import { formatError } from "../util/error";
+import { formatError } from "util/error";
 
 const useSignup = () => {
   const history = useHistory();

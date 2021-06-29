@@ -2,9 +2,9 @@ import { useMemo, useCallback, useState } from "react";
 import { match } from "react-router-dom";
 import { gql, useQuery } from "@apollo/client";
 import * as models from "models";
-import { formatError } from "../util/error";
+import { formatError } from "util/error";
 import useNavigationTabs from "@hooks/useNavigationTabs";
-import { truncateId } from "../util/truncatedId";
+import { truncateId } from "util/truncatedId";
 
 export type Props = {
   match: match<{ application: string; commitId: string }>;

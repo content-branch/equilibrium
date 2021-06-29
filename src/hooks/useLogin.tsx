@@ -3,7 +3,7 @@ import { Location } from "history";
 import { useHistory, useLocation } from "react-router-dom";
 import { gql, useMutation } from "@apollo/client";
 import { setToken } from "../authentication/authentication";
-import { formatError } from "../util/error";
+import { formatError } from "util/error";
 import queryString from "query-string";
 import { DEFAULT_PAGE_SOURCE, SIGN_IN_PAGE_CONTENT } from "@amp-components/User/constants";
 

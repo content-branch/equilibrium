@@ -1,7 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
 import { useCallback, useState } from "react";
 import * as models from "models";
-import { formatError } from "../util/error";
+import { formatError } from "util/error";
 
 type TData = {
   userApiTokens: models.ApiToken[];

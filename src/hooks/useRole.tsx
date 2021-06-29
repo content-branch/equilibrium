@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { useRouteMatch } from "react-router-dom";
 import { gql, useMutation, useQuery } from "@apollo/client";
-import { formatError } from "../util/error";
+import { formatError } from "util/error";
 import * as models from "models";
 
 type TData = {

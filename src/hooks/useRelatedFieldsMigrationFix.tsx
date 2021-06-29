@@ -5,7 +5,7 @@ import { useCallback, useContext, useMemo } from "react";
 import { match } from "react-router-dom";
 import useNavigationTabs from "@hooks/useNavigationTabs";
 import * as models from "models";
-import { formatError } from "../util/error";
+import { formatError } from "util/error";
 import PendingChangesContext from "@amp-components/VersionControl/PendingChangesContext";
 import {
   FormValues

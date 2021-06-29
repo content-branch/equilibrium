@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GET_APPLICATION } from "@hooks/useApplicationHome";
 import * as models from "models";
-import { useTracking, Event as TrackEvent } from "../util/analytics";
+import { useTracking, Event as TrackEvent } from "util/analytics";
 
 type Props = {
   applicationId: string;

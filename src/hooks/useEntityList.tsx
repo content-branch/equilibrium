@@ -2,7 +2,7 @@ import { useState, useCallback, useEffect } from "react";
 import { match } from "react-router-dom";
 import { gql, useQuery } from "@apollo/client";
 
-import { formatError } from "../util/error";
+import { formatError } from "util/error";
 import * as models from "models";
 import useNavigationTabs from "@hooks/useNavigationTabs";
 

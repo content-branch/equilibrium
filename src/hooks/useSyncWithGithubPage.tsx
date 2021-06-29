@@ -1,7 +1,7 @@
 import { match } from "react-router-dom";
 
 import { useQuery } from "@apollo/client";
-import { formatError } from "../util/error";
+import { formatError } from "util/error";
 import * as models from "models";
 import { GET_APPLICATION } from "@hooks/useApplicationHome";
 

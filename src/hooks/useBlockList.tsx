@@ -1,6 +1,6 @@
 import { useState, useMemo, useCallback } from "react";
 import { gql, useQuery } from "@apollo/client";
-import { formatError } from "../util/error";
+import { formatError } from "util/error";
 import keyBy from "lodash.keyby";
 import { useHistory } from "react-router-dom";
 

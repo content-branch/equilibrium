@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Redirect, RouteProps } from "react-router-dom";
-import useAuthenticated from "./use-authenticated";
+import useAuthenticated from "@hooks/use-authenticated";
 
 type Props = Omit<RouteProps, "render">;
 

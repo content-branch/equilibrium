@@ -3,11 +3,11 @@ import { useRouteMatch, useHistory } from "react-router-dom";
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { types } from "@amplication/data";
 
-import { formatError } from "../util/error";
+import { formatError } from "util/error";
 import * as models from "models";
 import PendingChangesContext from "@amp-components/VersionControl/PendingChangesContext";
 
-import { useTracking } from "../util/analytics";
+import { useTracking } from "util/analytics";
 import { Values } from "./EntityFieldForm";
 import {
   Values as RelatedFieldValues,

@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { gql, useMutation } from "@apollo/client";
-import { formatError } from "../util/error";
+import { formatError } from "util/error";
 import * as models from "models";
 
 export type Props = {

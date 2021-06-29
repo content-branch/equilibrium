@@ -9,8 +9,8 @@ import {
   EntitiesDiagramFormData,
 } from "@hooks/useEntitiesDiagram";
 import * as models from "models";
-import { useTracking } from "../util/analytics";
-import { formatError } from "../util/error";
+import { useTracking } from "util/analytics";
+import { formatError } from "util/error";
 import { GET_APPLICATIONS } from "@hooks/useApplicationList";
 import { sampleAppWithEntities, sampleAppWithoutEntities } from "@components/amp-components/Application/constants";
 

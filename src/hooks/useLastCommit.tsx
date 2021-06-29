@@ -1,7 +1,7 @@
 import { useMemo, useState, useContext } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { isEmpty } from "lodash";
-import { formatError } from "../util/error";
+import { formatError } from "util/error";
 import * as models from "models";
 import PendingChangesContext from "@amp-components/VersionControl/PendingChangesContext";
 

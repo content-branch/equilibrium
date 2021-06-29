@@ -3,9 +3,9 @@ import { match, useLocation } from "react-router-dom";
 import { gql, useQuery, useMutation } from "@apollo/client";
 import PendingChangesContext from "@amp-components/VersionControl/PendingChangesContext";
 import * as models from "models";
-import { formatError } from "../util/error";
+import { formatError } from "util/error";
 import useNavigationTabs from "@hooks/useNavigationTabs";
-import { useTracking } from "../util/analytics";
+import { useTracking } from "util/analytics";
 
 export type Props = {
   match: match<{ application: string; entityId: string; fieldId: string }>;

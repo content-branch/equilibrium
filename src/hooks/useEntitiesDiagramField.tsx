@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import * as models from "models";
-import { FieldIdentifier } from "./useEntitiesDiagram";
+import { FieldIdentifier } from "@hooks/useEntitiesDiagram";
 
 type Props = {
   field: models.AppCreateWithEntitiesFieldInput;

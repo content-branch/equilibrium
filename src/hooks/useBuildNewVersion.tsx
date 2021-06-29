@@ -3,7 +3,7 @@ import semver, { ReleaseType } from "semver";
 import { useHistory } from "react-router-dom";
 
 import { gql, useMutation } from "@apollo/client";
-import { formatError } from "../util/error";
+import { formatError } from "util/error";
 import * as models from "models";
 
 export type BuildType = {

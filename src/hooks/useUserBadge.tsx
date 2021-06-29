@@ -3,7 +3,7 @@ import { gql, useQuery } from "@apollo/client";
 import * as models from "models";
 
 import useAuthenticated from "../authentication/use-authenticated";
-import { setUserId, identifySetOnce } from "../util/analytics";
+import { setUserId, identifySetOnce } from "util/analytics";
 
 type TData = {
   me: {

@@ -2,8 +2,8 @@ import { useCallback } from "react";
 import { gql, useMutation, useQuery } from "@apollo/client";
 
 import * as models from "models";
-import { formatError } from "../util/error";
-import { useTracking } from "../util/analytics";
+import { formatError } from "util/error";
+import { useTracking } from "util/analytics";
 import { GET_CURRENT_WORKSPACE } from "@hooks/useWorkspaceSelector";
 
 type TData = {

@@ -3,12 +3,12 @@ import { match } from "react-router-dom";
 import { useQuery, useLazyQuery } from "@apollo/client";
 import * as models from "models";
 
-import { formatError } from "../util/error";
+import { formatError } from "util/error";
 
 import useNavigationTabs from "@hooks/useNavigationTabs";
 import { GET_BUILD } from "@hooks/useBuildWatchStatus";
 import { GET_COMMIT } from "@hooks/useCommitPage";
-import { truncateId } from "../util/truncatedId";
+import { truncateId } from "util/truncatedId";
 
 type LogData = {
   action: models.Action;

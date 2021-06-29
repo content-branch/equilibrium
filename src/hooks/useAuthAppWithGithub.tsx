@@ -2,10 +2,10 @@ import { useCallback, useRef, useState } from "react";
 import { MDCSwitchFoundation } from "@material/switch";
 import { isEmpty } from "lodash";
 import { gql, useMutation } from "@apollo/client";
-import { formatError } from "../util/error";
+import { formatError } from "util/error";
 import * as models from "models";
 
-import { useTracking } from "../util/analytics";
+import { useTracking } from "util/analytics";
 
 type DType = {
   startAuthorizeAppWithGithub: models.AuthorizeAppWithGithubResult;

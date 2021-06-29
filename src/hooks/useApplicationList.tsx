@@ -1,8 +1,8 @@
 import { useCallback, useState } from "react";
 import { gql, useQuery } from "@apollo/client";
-import { formatError } from "../util/error";
+import { formatError } from "util/error";
 import { isMobileOnly } from "react-device-detect";
-import { useTracking } from "../util/analytics";
+import { useTracking } from "util/analytics";
 
 import * as models from "models";
 

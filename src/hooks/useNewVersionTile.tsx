@@ -4,7 +4,7 @@ import { useCallback, useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import { GET_LOOKUP_FIELDS } from "@hooks/useRelatedFieldsMigrationFix";
 import * as models from "models";
-import { Event as TrackEvent, useTracking } from "../util/analytics";
+import { Event as TrackEvent, useTracking } from "util/analytics";
 
 type TData = {
   app: models.App;

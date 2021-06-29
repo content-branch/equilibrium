@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { match, useHistory } from "react-router-dom";
 import { gql, useMutation } from "@apollo/client";
 import * as models from "models";
-import { formatError } from "../util/error";
+import { formatError } from "util/error";
 
 export type Props = {
   match: match<{ application: string }>;

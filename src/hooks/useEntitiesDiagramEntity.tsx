@@ -4,7 +4,7 @@ import * as models from "models";
 import {
   EntityPositionData,
   FieldIdentifier,
-} from "./useEntitiesDiagram";
+} from "@hooks/useEntitiesDiagram";
 
 export type Props = {
   entity: models.AppCreateWithEntitiesEntityInput;

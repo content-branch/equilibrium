@@ -1,9 +1,9 @@
 import { gql, useMutation, Reference } from "@apollo/client";
 import { useCallback } from "react";
 import * as models from "models";
-import { useTracking } from "../util/analytics";
-import { formatError } from "../util/error";
-import { CROSS_OS_CTRL_ENTER } from "../util/hotkeys";
+import { useTracking } from "util/analytics";
+import { formatError } from "util/error";
+import { CROSS_OS_CTRL_ENTER } from "util/hotkeys";
 
 type DType = {
   createApiToken: models.ApiToken;

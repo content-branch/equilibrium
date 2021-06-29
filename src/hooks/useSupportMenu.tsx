@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { useTracking } from "../util/analytics";
+import { useTracking } from "util/analytics";
 
 const useSupportMenu = () => {
   const { trackEvent } = useTracking();
