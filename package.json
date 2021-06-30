@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.3.15",
+    "@craco/craco": "^6.1.2",
     "@extra-set/difference": "^2.2.3",
     "@material/switch": "^11.0.0",
     "@rooks/use-window-size": "^3.6.0",
@@ -117,7 +118,7 @@
     "yaml": "^1.10.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "craco start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -143,6 +144,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^9.8.4",
+    "craco-alias": "^3.0.1",
     "gulp": "^4.0.2",
     "gulp-csso": "^4.0.1",
     "gulp-debug": "^4.0.0",

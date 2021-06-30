@@ -5,6 +5,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Views from './views';
 import { Route, Switch } from 'react-router-dom';
 import { ThemeSwitcherProvider } from "react-css-theme-switcher";
+import  NavigationTabsProvider from "@amp-components/Layout/NavigationTabsProvider";
 import { THEME_CONFIG } from './configs/AppConfig';
 import { track, dispatch, init as initAnalytics } from "./util/analytics";
 import * as reactHotkeys from "react-hotkeys";
@@ -45,13 +46,15 @@ function App() {
   return (
     <div className="App">
       <Provider store={store}>
-        <ThemeSwitcherProvider themeMap={themes} defaultTheme={THEME_CONFIG.currentTheme} insertionPoint="styles-insertion-point">
-          <Router>
-            <Switch>
-              <Route path="/" component={Views}/>
-            </Switch>
-          </Router>
-        </ThemeSwitcherProvider>
+        <NavigationTabsProvider>
+          <ThemeSwitcherProvider themeMap={themes} defaultTheme={THEME_CONFIG.currentTheme} insertionPoint="styles-insertion-point">
+            <Router>
+              <Switch>
+                <Route path="/" component={Views}/>
+              </Switch>
+            </Router>
+          </ThemeSwitcherProvider>
+        </NavigationTabsProvider>
       </Provider>
     </div>
   );

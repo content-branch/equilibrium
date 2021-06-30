@@ -1,11 +1,6 @@
 {
   "compilerOptions": {
     "baseUrl": "src",
-    "paths": {
-      "@components/*": ["components/*"],
-      "@amp-components/*": ["components/amp-components/*"],
-      "@hooks/*": ["hooks/*"],
-    },
     "target": "es5",
     "lib": [
       "dom",
@@ -30,5 +25,6 @@
   },
   "include": [
     "src"
-  ]
+  ],
+  "extends": "./tsconfig.paths.json"
 }
