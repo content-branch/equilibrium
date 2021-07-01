@@ -1,10 +1,8 @@
 import React, { useState, useMemo } from "react";
 import { useQuery, gql } from "@apollo/client";
 import { History } from "history";
-import { Icon } from "@rmwc/icon";
 
 import { useHistory, useRouteMatch } from "react-router-dom";
-import { CircleBadge } from "@amplication/design-system";
 
 import * as models from "models";
 
@@ -104,16 +102,16 @@ export default useCommandPalette;
 
 function CommandPaletteItem(suggestion: Command) {
   // A suggestion object will be passed to your custom component for each command
-  const { appColor, appName, name, highlight, showAppData, type } = suggestion;
+  const {  appName, name, highlight, showAppData } = suggestion;
+  //appColor, type
   return (
     <>
       {showAppData && (
         <>
-          <CircleBadge name={appName || ""} color={appColor} />
           <span className="command-palette__app-name">{appName}</span>
         </>
       )}
-      <Icon icon={type} />
+      {/* <Icon icon={type} /> */}
       {highlight && highlight[0] ? (
         <span dangerouslySetInnerHTML={{ __html: highlight[0] }} />
       ) : (

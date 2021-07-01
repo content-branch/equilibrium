@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { API_BASE_URL } from 'configs/AppConfig'
-import history from '../history'
+import history from 'defaultHistory'
 import { AUTH_TOKEN } from 'redux/constants/Auth'
 import { notification } from 'antd';
 

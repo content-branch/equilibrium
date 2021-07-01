@@ -51,7 +51,7 @@ export const Logo = (props) => {
   return (
     <div
       className={getLogoDisplay(isMobile, props.mobileLogo)} 
-      style={{width: `${getLogoWidthGutter(props, isMobile)}`}}>
+      style={{width: `${getLogoWidthGutter(props, isMobile)}`, cursor:`pointer`}}>
       <img src={getLogo(props)} alt={`${APP_NAME} logo`} width={props.navCollapsed?"35px":"175px"}/>
     </div>
   )

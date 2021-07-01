@@ -9,10 +9,47 @@ import  NavigationTabsProvider from "@amp-components/Layout/NavigationTabsProvid
 import { THEME_CONFIG } from './configs/AppConfig';
 import { track, dispatch, init as initAnalytics } from "./util/analytics";
 import * as reactHotkeys from "react-hotkeys";
+import { setContext } from "@apollo/client/link/context";
+import { getToken, setToken } from "./authentication/authentication";
+
+import {
+  ApolloClient,
+  InMemoryCache,
+  createHttpLink,
+  ApolloProvider,
+} from "@apollo/client";
 
 const context = {
   source: "amplication-client",
 };
+
+const params = new URLSearchParams(window.location.search);
+
+const token = params.get("token");
+if (token) {
+  setToken(token);
+}
+
+const httpLink = createHttpLink({
+  uri: "/graphql",
+});
+
+const authLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  const token = getToken();
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : "",
+    },
+  };
+});
+
+const apolloClient = new ApolloClient({
+  cache: new InMemoryCache(),
+  link: authLink.concat(httpLink),
+});
 
 const themes = {
   dark: `${process.env.PUBLIC_URL}/css/dark-theme.css`,
@@ -46,15 +83,17 @@ function App() {
   return (
     <div className="App">
       <Provider store={store}>
-        <NavigationTabsProvider>
-          <ThemeSwitcherProvider themeMap={themes} defaultTheme={THEME_CONFIG.currentTheme} insertionPoint="styles-insertion-point">
-            <Router>
-              <Switch>
-                <Route path="/" component={Views}/>
-              </Switch>
-            </Router>
-          </ThemeSwitcherProvider>
-        </NavigationTabsProvider>
+        <ApolloProvider client={apolloClient}>
+          <NavigationTabsProvider>
+            <ThemeSwitcherProvider themeMap={themes} defaultTheme={THEME_CONFIG.currentTheme} insertionPoint="styles-insertion-point">
+              <Router>
+                <Switch>
+                  <Route path="/" component={Views}/>
+                </Switch>
+              </Router>
+            </ThemeSwitcherProvider>
+          </NavigationTabsProvider>
+        </ApolloProvider>
       </Provider>
     </div>
   );
