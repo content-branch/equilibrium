@@ -96,25 +96,3 @@ body {
 div.mdc-top-app-bar--fixed-adjust {
   padding-top: var(--mdc-top-bar-adjust);
 }
-
-a {
-  text-decoration: none;
-  color: var(--black80);
-  @include semiBold;
-}
-
-h1 {
-  @include pageTitle;
-}
-
-h2 {
-  @include sectionTitle;
-}
-
-h3 {
-  @include title1;
-}
-
-h4 {
-  @include headline-description;
-}

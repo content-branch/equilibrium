@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, Grid } from "antd";
 import IntlMessage from "../util-components/IntlMessage";
@@ -31,12 +31,21 @@ const setDefaultOpen = (key) => {
 
 const SideNavContent = (props) => {
 	const { sideNavTheme, routeInfo, hideGroupTitle, localization, onMobileNavToggle } = props;
-	const isMobile = !utils.getBreakPoint(useBreakpoint()).includes('lg')
+	const isMobile = !utils.getBreakPoint(useBreakpoint()).includes('lg');
 	const closeMobileNav = () => {
 		if (isMobile) {
 			onMobileNavToggle(false)
 		}
-	}
+  }
+
+  const [openKeys, setOpenKeys] = useState([]);
+  const [selectedKeys, setSelectedKeys] = useState([]);
+  
+  useEffect(() => {
+    setSelectedKeys([routeInfo?.key]);
+    setOpenKeys(setDefaultOpen(routeInfo?.key));
+  }, [routeInfo?.key]);
+
   return (
     <Menu
       theme={sideNavTheme === SIDE_NAV_LIGHT ? "light" : "dark"}
@@ -44,6 +53,8 @@ const SideNavContent = (props) => {
       style={{ height: "100%", borderRight: 0 }}
       defaultSelectedKeys={[routeInfo?.key]}
       defaultOpenKeys={setDefaultOpen(routeInfo?.key)}
+      selectedKeys={selectedKeys}
+      // openKeys={openKeys}
       className={hideGroupTitle ? "hide-group-title" : ""}
     >
       {navigationConfig.map((menu) =>

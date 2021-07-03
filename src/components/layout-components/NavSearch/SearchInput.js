@@ -1,10 +1,13 @@
 import React, { useState, useRef } from 'react';
 import { 
-	DashboardOutlined,
 	AppstoreOutlined,
 	AntDesignOutlined,
-	FileTextOutlined,
-	SearchOutlined
+	SearchOutlined,
+	CodeOutlined,
+	BranchesOutlined,
+	SettingOutlined,
+	DatabaseOutlined,
+	ApartmentOutlined
 } from '@ant-design/icons';
 import { Link } from "react-router-dom";
 import { AutoComplete, Input } from 'antd';
@@ -28,14 +31,20 @@ const optionList = getOptionList(navigationConfig)
 
 const getCategoryIcon = category => {
 	switch (category) {
-		case 'dashboards':
-			return <DashboardOutlined className="text-success"/>;
-		case 'apps':
-			return <AppstoreOutlined className="text-danger"/>;
-		case 'components':
-			return <AntDesignOutlined className="text-primary"/>;
-		case 'extra':
-			return <FileTextOutlined className="text-warning"/>;
+		case 'dashboard':
+			return <AntDesignOutlined className="text-success"/>;
+		case 'workspaces':
+			return <ApartmentOutlined className="text-danger"/>;
+		case 'applications':
+			return <AppstoreOutlined className="text-primary"/>;
+		case 'entities':
+			return <DatabaseOutlined className="text-primary"/>;	
+		case 'console':
+			return <CodeOutlined className="text-warning"/>;
+		case 'version':
+			return <BranchesOutlined className="text-warning"/>;
+		case 'settings':
+			return <SettingOutlined className="text-warning"/>;
 		default:
 			return null;
 	}

@@ -32,62 +32,53 @@ import { APP_PREFIX_PATH } from 'configs/AppConfig';
 
 //Dashboard
 const dashBoardNavTree = [{
-  key: 'home',
+  key: 'home-dashboard',
   path: `${APP_PREFIX_PATH}/home`,
   title: 'Dashboard',
   icon: AntDesignOutlined,
-  breadcrumb: false,
+  breadcrumb: true,
   submenu: []
 }];
 
 
 //Applications
 const appNavTree = [{
-  key: 'app',
-  path: `${APP_PREFIX_PATH}/home`,
+  key: 'applications',
+  path: `${APP_PREFIX_PATH}/applications`,
   title: 'Applications',
   icon: AppstoreOutlined,
-  breadcrumb: false,
+  breadcrumb: true,
   submenu: [
     {
-      key: 'app-overview',
-      path: `${APP_PREFIX_PATH}/home`,
+      key: 'applications-overview',
+      path: `${APP_PREFIX_PATH}/applications/overview`,
       title: 'Overview',
       icon: EyeOutlined,
-      breadcrumb: false,
-      submenu: [
-        {
-          key: 'app-integrations-2',
-          path: `${APP_PREFIX_PATH}/home`,
-          title: 'Integrations',
-          icon: '',
-          breadcrumb: false,
-          submenu: []
-        }
-      ]
+      breadcrumb: true,
+      submenu: []
     },
     {
-      key: 'app-integrations',
-      path: `${APP_PREFIX_PATH}/home`,
+      key: 'applications-integrations',
+      path: `${APP_PREFIX_PATH}/applications/integrations`,
       title: 'Integrations',
       icon: ApiOutlined,
-      breadcrumb: false,
+      breadcrumb: true,
       submenu: []
     },
     {
-      key: 'app-sandbox',
-      path: `${APP_PREFIX_PATH}/home`,
+      key: 'applications-open-in-sandbox',
+      path: `${APP_PREFIX_PATH}/applications/sandbox`,
       title: 'Open in Sandbox',
       icon: CodeSandboxOutlined,
-      breadcrumb: false,
+      breadcrumb: true,
       submenu: []
     },
     {
-      key: 'app-deploy',
-      path: `${APP_PREFIX_PATH}/home`,
+      key: 'applications-app-deploy',
+      path: `${APP_PREFIX_PATH}/applications/deploy`,
       title: 'Deploy',
       icon: DeploymentUnitOutlined,
-      breadcrumb: false,
+      breadcrumb: true,
       submenu: []
     }
   ]
@@ -96,46 +87,46 @@ const appNavTree = [{
 //Entities
 const entitiesBoardNavTree = [{
   key: 'entities',
-  path: `${APP_PREFIX_PATH}/home`,
+  path: `${APP_PREFIX_PATH}/entities`,
   title: 'Entities',
   icon: DatabaseOutlined,
-  breadcrumb: false,
+  breadcrumb: true,
   submenu: [
     {
-      key: 'entities-overview',
-      path: `${APP_PREFIX_PATH}/home`,
+      key: 'entities-content-model',
+      path: `${APP_PREFIX_PATH}/entities/content-model`,
       title: 'Content Model',
       icon: BlockOutlined,
-      breadcrumb: false,
+      breadcrumb: true,
       submenu: []
     },
     {
-      key: 'entities-schemas',
-      path: `${APP_PREFIX_PATH}/home`,
+      key: 'entities-schemas-analysis',
+      path: `${APP_PREFIX_PATH}/entities/schemas-analysis`,
       title: 'Schemas analysis',
       icon: HeatMapOutlined,
-      breadcrumb: false,
+      breadcrumb: true,
       submenu: []
     }
   ]
 }];
 
 //Workspaces
-const workspacedNavTree = [{
-  key: 'workspace',
-  path: `${APP_PREFIX_PATH}/home`,
+const workspacesNavTree = [{
+  key: 'workspaces',
+  path: `${APP_PREFIX_PATH}/workspaces`,
   title: 'Workspaces',
   icon: ApartmentOutlined,
-  breadcrumb: false,
+  breadcrumb: true,
   submenu: [
     ...appNavTree,
     ...entitiesBoardNavTree,
     {
       key: 'workspace-settings',
-      path: `${APP_PREFIX_PATH}/home`,
+      path: `${APP_PREFIX_PATH}/workspaces`,
       title: 'Workspace settings',
       icon: SettingOutlined,
-      breadcrumb: false,
+      breadcrumb: true,
       submenu: []
     }
   ]
@@ -146,25 +137,25 @@ const workspacedNavTree = [{
 //Command Line Interface
 const cliNavTree = [{
   key: 'console',
-  path: `${APP_PREFIX_PATH}/home`,
+  path: `${APP_PREFIX_PATH}/console`,
   title: 'Console',
   icon: '',
-  breadcrumb: false,
+  breadcrumb: true,
   submenu: [
     {
-      key: 'console-cli',
-      path: `${APP_PREFIX_PATH}/home`,
+      key: 'console-cli-command-line-interface',
+      path: `${APP_PREFIX_PATH}/console/cli`,
       title: 'Command (CLI)',
       icon: CodeOutlined,
-      breadcrumb: false,
+      breadcrumb: true,
       submenu: []
     },
     {
-      key: 'console-graphql',
-      path: `${APP_PREFIX_PATH}/home`,
+      key: 'console-graphql-gql-GraphQL',
+      path: `${APP_PREFIX_PATH}/console/gql`,
       title: 'GraphQL Console',
       icon: RadarChartOutlined,
-      breadcrumb: false,
+      breadcrumb: true,
       submenu: []
     }
   ]
@@ -172,42 +163,42 @@ const cliNavTree = [{
 
 //Version Control
 const versionControlNavTree = [{
-  key: 'versionControl',
-  path: `${APP_PREFIX_PATH}/home`,
+  key: 'version-control',
+  path: `${APP_PREFIX_PATH}/version`,
   title: 'Version Control',
   icon: '',
-  breadcrumb: false,
+  breadcrumb: true,
   submenu: [
     {
-      key: 'versionControl-pending',
-      path: `${APP_PREFIX_PATH}/home`,
+      key: 'version-control-pending-staging',
+      path: `${APP_PREFIX_PATH}/version/staging`,
       title: 'Pending Changes',
       icon: BranchesOutlined,
-      breadcrumb: false,
+      breadcrumb: true,
       submenu: []
     },
     {
-      key: 'versionControl-commits',
-      path: `${APP_PREFIX_PATH}/home`,
+      key: 'version-control-commits',
+      path: `${APP_PREFIX_PATH}/version/commits`,
       title: 'Commits',
       icon: SubnodeOutlined,
-      breadcrumb: false,
+      breadcrumb: true,
       submenu: []
     },
     {
-      key: 'versionControl-sync',
-      path: `${APP_PREFIX_PATH}/home`,
+      key: 'version-control-sync-github',
+      path: `${APP_PREFIX_PATH}/version/sync`,
       title: 'Sync with Github',
       icon: GithubOutlined,
-      breadcrumb: false,
+      breadcrumb: true,
       submenu: []
     },
     {
-      key: 'versionControl-build',
-      path: `${APP_PREFIX_PATH}/home`,
+      key: 'version-control-build-status-pipeline',
+      path: `${APP_PREFIX_PATH}/version/build-status`,
       title: 'Build Status',
       icon: BuildOutlined,
-      breadcrumb: false,
+      breadcrumb: true,
       submenu: []
     }
   ]
@@ -215,47 +206,47 @@ const versionControlNavTree = [{
 
 //Roles
 const roleNavTree = [{
-  key: 'role',
-  path: `${APP_PREFIX_PATH}/home`,
+  key: 'settings-role',
+  path: `${APP_PREFIX_PATH}/settings/`,
   title: 'Roles & Permissions',
   icon: SafetyCertificateOutlined,
-  breadcrumb: false,
+  breadcrumb: true,
   submenu: [
     {
-      key: 'role-permission',
-      path: `${APP_PREFIX_PATH}/home`,
+      key: 'settings-role-permissions',
+      path: `${APP_PREFIX_PATH}/settings/permissions`,
       title: 'Permissions',
       icon: UnlockOutlined,
-      breadcrumb: false,
+      breadcrumb: true,
       submenu: []
     },
     {
-      key: 'role-token',
-      path: `${APP_PREFIX_PATH}/home`,
+      key: 'settings-role-api-tokens',
+      path: `${APP_PREFIX_PATH}/settings/api-tokens`,
       title: 'API Tokens',
       icon: IdcardOutlined,
-      breadcrumb: false,
+      breadcrumb: true,
       submenu: []
     }
   ]
 }];
 
 const userNavTree = [{
-  key: 'user',
-  path: `${APP_PREFIX_PATH}/home`,
+  key: 'settings-user-edit-profile',
+  path: `${APP_PREFIX_PATH}/settings/edit-profile`,
   title: 'User',
   icon: UserOutlined,
-  breadcrumb: false,
+  breadcrumb: true,
   submenu: []
 }];
 
 //Settings
 const settingsNavTree = [{
   key: 'settings',
-  path: `${APP_PREFIX_PATH}/home`,
+  path: `${APP_PREFIX_PATH}/settings`,
   title: 'Settings',
   icon: SettingOutlined,
-  breadcrumb: false,
+  breadcrumb: true,
   submenu: [
     ...roleNavTree,
     ...userNavTree
@@ -265,17 +256,17 @@ const settingsNavTree = [{
 //Support
 const supportNavTree = [{
   key: 'support',
-  path: `${APP_PREFIX_PATH}/home`,
+  path: `${APP_PREFIX_PATH}/support`,
   title: 'Support',
   icon: QuestionOutlined,
-  breadcrumb: false,
+  breadcrumb: true,
   submenu: [
     {
       key: 'support-start',
       path: `${APP_PREFIX_PATH}/home`,
       title: 'Getting Started',
       icon: BulbOutlined,
-      breadcrumb: false,
+      breadcrumb: true,
       submenu: []
     },
     {
@@ -283,7 +274,7 @@ const supportNavTree = [{
       path: `${APP_PREFIX_PATH}/home`,
       title: 'Developer Docs',
       icon: ReadOutlined,
-      breadcrumb: false,
+      breadcrumb: true,
       submenu: []
     },
     {
@@ -291,7 +282,7 @@ const supportNavTree = [{
       path: `${APP_PREFIX_PATH}/home`,
       title: 'Changelogs',
       icon: ProfileOutlined,
-      breadcrumb: false,
+      breadcrumb: true,
       submenu: []
     },
     {
@@ -299,7 +290,7 @@ const supportNavTree = [{
       path: `${APP_PREFIX_PATH}/home`,
       title: 'Guide to Headless CMS',
       icon: BookOutlined,
-      breadcrumb: false,
+      breadcrumb: true,
       submenu: []
     }
   ]
@@ -311,7 +302,7 @@ const docsNavTree = [{
   path: `${APP_PREFIX_PATH}/home`,
   title: 'Docs',
   icon: '',
-  breadcrumb: false,
+  breadcrumb: true,
   submenu: [
     ...supportNavTree
   ]
@@ -323,7 +314,7 @@ const logoutNavTree = [{
   path: `${APP_PREFIX_PATH}/logout`,
   title: 'Logout',
   icon: LogoutOutlined,
-  breadcrumb: false,
+  breadcrumb: true,
   submenu: [],
   isLogout:true,
 }];
@@ -333,7 +324,7 @@ const othersNavTree = [{
   path: `${APP_PREFIX_PATH}/home`,
   title: ' ',
   icon: '',
-  breadcrumb: false,
+  breadcrumb: true,
   submenu: [
     ...logoutNavTree
   ]
@@ -341,7 +332,7 @@ const othersNavTree = [{
 
 const navigationConfig = [
   ...dashBoardNavTree,
-  ...workspacedNavTree,
+  ...workspacesNavTree,
   ...cliNavTree,
   ...versionControlNavTree,
   ...settingsNavTree,
