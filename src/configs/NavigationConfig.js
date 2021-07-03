@@ -320,11 +320,12 @@ const docsNavTree = [{
 //Logout
 const logoutNavTree = [{
   key: 'logout',
-  path: `${APP_PREFIX_PATH}/home`,
+  path: `${APP_PREFIX_PATH}/logout`,
   title: 'Logout',
   icon: LogoutOutlined,
   breadcrumb: false,
-  submenu: []
+  submenu: [],
+  isLogout:true,
 }];
 
 const othersNavTree = [{

@@ -12,7 +12,7 @@ export const AppViews = () => {
           <Redirect to={`${APP_PREFIX_PATH}/home`} />
         </PrivateRoute>
         <PrivateRoute path={`${APP_PREFIX_PATH}/home`} component={lazy(() => import(`./home`))} />
-        
+        <PrivateRoute path={`${APP_PREFIX_PATH}/logout`} component={lazy(() => import(`./logout`))} />
         <PrivateRoute path={`${APP_PREFIX_PATH}/404`} component={lazy(() => import(`./errors/error-page-1`))} />
         <PrivateRoute path={`${APP_PREFIX_PATH}/server-error`} component={lazy(() => import(`./errors/error-page-2`))} />
         <Redirect from={`${APP_PREFIX_PATH}`} to={`${APP_PREFIX_PATH}/404`} />
