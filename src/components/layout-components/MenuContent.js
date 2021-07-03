@@ -38,12 +38,10 @@ const SideNavContent = (props) => {
 		}
   }
 
-  const [openKeys, setOpenKeys] = useState([]);
   const [selectedKeys, setSelectedKeys] = useState([]);
   
   useEffect(() => {
     setSelectedKeys([routeInfo?.key]);
-    setOpenKeys(setDefaultOpen(routeInfo?.key));
   }, [routeInfo?.key]);
 
   return (
@@ -54,7 +52,6 @@ const SideNavContent = (props) => {
       defaultSelectedKeys={[routeInfo?.key]}
       defaultOpenKeys={setDefaultOpen(routeInfo?.key)}
       selectedKeys={selectedKeys}
-      // openKeys={openKeys}
       className={hideGroupTitle ? "hide-group-title" : ""}
     >
       {navigationConfig.map((menu) =>

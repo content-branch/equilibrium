@@ -6,7 +6,11 @@
 	"sidenav.dashboard.analytic": "Analytic",
 	"sidenav.dashboard.sales": "Sales",
 
-	"sidenav.apps": "Apps",
+	"sidenav.apps": "Applications",
+	"sidenav.apps.overview": "Overview",
+	"sidenav.apps.integrations":"Integrations",
+	"sidenav.apps.sandbox":"Open in Sandbox",
+	"sidenav.apps.deploy":"Deploy",
 	"sidenav.apps.mail": "Mail",
 	"sidenav.apps.chat": "Chat",
 	"sidenav.apps.calendar": "Calendar",
@@ -124,5 +128,36 @@
 
 	"sidenav.docs": "Docs",
 	"sidenav.docs.documentation": "Documentation",
-	"sidenav.docs.changelog": "Changelog"
+	"sidenav.docs.changelog": "Changelog",
+
+	"sidenav.entities":"Entities",
+	"sidenav.entities.content-model":"Content Model",
+	"sidenav.entities.schemas-analysis":"Schemas analysis",
+	
+	"sidenav.workspaces":"Workspaces",
+	"sidenav.workspaces.settings":"Workspace settings",
+
+	"sidenav.console":"Console",
+	"sidenav.console.cli":"Command (CLI)",
+	"sidenav.console.gql":"GraphQL Console",
+
+	"sidenav.version":"Version Control",
+	"sidenav.version.staging":"Pending Changes",
+	"sidenav.version.commit":"Commits",
+	"sidenav.version.sync":"Sync with Github",
+	"sidenav.version.build":"Build Status",
+
+	"sidenav.role":"Roles & Permissions",
+	"sidenav.role.permission":"Permissions",
+	"sidenav.role.token":"API Tokens",
+	"sidenav.settings.user":"User",
+	"sidenav.settings":"Settings",
+
+	"sidenav.docs.support":"Support",
+	"sidenav.docs.tutorial":"Getting Started",
+	"sidenav.docs.dev":"Developer Docs",
+	"sidenav.docs.cms":"Guide to Headless CMS",
+
+	"sidenav.logout":"Logout",
+	"sidenav.empty":" "
 }

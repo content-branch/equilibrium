@@ -34,7 +34,7 @@ import { APP_PREFIX_PATH } from 'configs/AppConfig';
 const dashBoardNavTree = [{
   key: 'home-dashboard',
   path: `${APP_PREFIX_PATH}/home`,
-  title: 'Dashboard',
+  title: 'sidenav.dashboard',
   icon: AntDesignOutlined,
   breadcrumb: true,
   submenu: []
@@ -45,14 +45,14 @@ const dashBoardNavTree = [{
 const appNavTree = [{
   key: 'applications',
   path: `${APP_PREFIX_PATH}/applications`,
-  title: 'Applications',
+  title: 'sidenav.apps',
   icon: AppstoreOutlined,
   breadcrumb: true,
   submenu: [
     {
       key: 'applications-overview',
       path: `${APP_PREFIX_PATH}/applications/overview`,
-      title: 'Overview',
+      title: 'sidenav.apps.overview',
       icon: EyeOutlined,
       breadcrumb: true,
       submenu: []
@@ -60,7 +60,7 @@ const appNavTree = [{
     {
       key: 'applications-integrations',
       path: `${APP_PREFIX_PATH}/applications/integrations`,
-      title: 'Integrations',
+      title: 'sidenav.apps.integrations',
       icon: ApiOutlined,
       breadcrumb: true,
       submenu: []
@@ -68,7 +68,7 @@ const appNavTree = [{
     {
       key: 'applications-open-in-sandbox',
       path: `${APP_PREFIX_PATH}/applications/sandbox`,
-      title: 'Open in Sandbox',
+      title: 'sidenav.apps.sandbox',
       icon: CodeSandboxOutlined,
       breadcrumb: true,
       submenu: []
@@ -76,7 +76,7 @@ const appNavTree = [{
     {
       key: 'applications-app-deploy',
       path: `${APP_PREFIX_PATH}/applications/deploy`,
-      title: 'Deploy',
+      title: 'sidenav.apps.deploy',
       icon: DeploymentUnitOutlined,
       breadcrumb: true,
       submenu: []
@@ -88,14 +88,14 @@ const appNavTree = [{
 const entitiesBoardNavTree = [{
   key: 'entities',
   path: `${APP_PREFIX_PATH}/entities`,
-  title: 'Entities',
+  title: 'sidenav.entities',
   icon: DatabaseOutlined,
   breadcrumb: true,
   submenu: [
     {
       key: 'entities-content-model',
       path: `${APP_PREFIX_PATH}/entities/content-model`,
-      title: 'Content Model',
+      title: 'sidenav.entities.content-model',
       icon: BlockOutlined,
       breadcrumb: true,
       submenu: []
@@ -103,7 +103,7 @@ const entitiesBoardNavTree = [{
     {
       key: 'entities-schemas-analysis',
       path: `${APP_PREFIX_PATH}/entities/schemas-analysis`,
-      title: 'Schemas analysis',
+      title: 'sidenav.entities.schemas-analysis',
       icon: HeatMapOutlined,
       breadcrumb: true,
       submenu: []
@@ -115,7 +115,7 @@ const entitiesBoardNavTree = [{
 const workspacesNavTree = [{
   key: 'workspaces',
   path: `${APP_PREFIX_PATH}/workspaces`,
-  title: 'Workspaces',
+  title: 'sidenav.workspaces',
   icon: ApartmentOutlined,
   breadcrumb: true,
   submenu: [
@@ -124,7 +124,7 @@ const workspacesNavTree = [{
     {
       key: 'workspace-settings',
       path: `${APP_PREFIX_PATH}/workspaces`,
-      title: 'Workspace settings',
+      title: 'sidenav.workspaces.settings',
       icon: SettingOutlined,
       breadcrumb: true,
       submenu: []
@@ -138,14 +138,14 @@ const workspacesNavTree = [{
 const cliNavTree = [{
   key: 'console',
   path: `${APP_PREFIX_PATH}/console`,
-  title: 'Console',
+  title: 'sidenav.console',
   icon: '',
   breadcrumb: true,
   submenu: [
     {
       key: 'console-cli-command-line-interface',
       path: `${APP_PREFIX_PATH}/console/cli`,
-      title: 'Command (CLI)',
+      title: 'sidenav.console.cli',
       icon: CodeOutlined,
       breadcrumb: true,
       submenu: []
@@ -153,7 +153,7 @@ const cliNavTree = [{
     {
       key: 'console-graphql-gql-GraphQL',
       path: `${APP_PREFIX_PATH}/console/gql`,
-      title: 'GraphQL Console',
+      title: 'sidenav.console.gql',
       icon: RadarChartOutlined,
       breadcrumb: true,
       submenu: []
@@ -165,14 +165,14 @@ const cliNavTree = [{
 const versionControlNavTree = [{
   key: 'version-control',
   path: `${APP_PREFIX_PATH}/version`,
-  title: 'Version Control',
+  title: 'sidenav.version',
   icon: '',
   breadcrumb: true,
   submenu: [
     {
       key: 'version-control-pending-staging',
       path: `${APP_PREFIX_PATH}/version/staging`,
-      title: 'Pending Changes',
+      title: 'sidenav.version.staging',
       icon: BranchesOutlined,
       breadcrumb: true,
       submenu: []
@@ -180,7 +180,7 @@ const versionControlNavTree = [{
     {
       key: 'version-control-commits',
       path: `${APP_PREFIX_PATH}/version/commits`,
-      title: 'Commits',
+      title: 'sidenav.version.commit',
       icon: SubnodeOutlined,
       breadcrumb: true,
       submenu: []
@@ -188,7 +188,7 @@ const versionControlNavTree = [{
     {
       key: 'version-control-sync-github',
       path: `${APP_PREFIX_PATH}/version/sync`,
-      title: 'Sync with Github',
+      title: 'sidenav.version.sync',
       icon: GithubOutlined,
       breadcrumb: true,
       submenu: []
@@ -196,7 +196,7 @@ const versionControlNavTree = [{
     {
       key: 'version-control-build-status-pipeline',
       path: `${APP_PREFIX_PATH}/version/build-status`,
-      title: 'Build Status',
+      title: 'sidenav.version.build',
       icon: BuildOutlined,
       breadcrumb: true,
       submenu: []
@@ -208,14 +208,14 @@ const versionControlNavTree = [{
 const roleNavTree = [{
   key: 'settings-role',
   path: `${APP_PREFIX_PATH}/settings/`,
-  title: 'Roles & Permissions',
+  title: 'sidenav.role',
   icon: SafetyCertificateOutlined,
   breadcrumb: true,
   submenu: [
     {
       key: 'settings-role-permissions',
       path: `${APP_PREFIX_PATH}/settings/permissions`,
-      title: 'Permissions',
+      title: 'sidenav.role.permission',
       icon: UnlockOutlined,
       breadcrumb: true,
       submenu: []
@@ -223,7 +223,7 @@ const roleNavTree = [{
     {
       key: 'settings-role-api-tokens',
       path: `${APP_PREFIX_PATH}/settings/api-tokens`,
-      title: 'API Tokens',
+      title: 'sidenav.role.token',
       icon: IdcardOutlined,
       breadcrumb: true,
       submenu: []
@@ -234,7 +234,7 @@ const roleNavTree = [{
 const userNavTree = [{
   key: 'settings-user-edit-profile',
   path: `${APP_PREFIX_PATH}/settings/edit-profile`,
-  title: 'User',
+  title: 'sidenav.settings.user',
   icon: UserOutlined,
   breadcrumb: true,
   submenu: []
@@ -244,7 +244,7 @@ const userNavTree = [{
 const settingsNavTree = [{
   key: 'settings',
   path: `${APP_PREFIX_PATH}/settings`,
-  title: 'Settings',
+  title: 'sidenav.settings',
   icon: SettingOutlined,
   breadcrumb: true,
   submenu: [
@@ -257,14 +257,14 @@ const settingsNavTree = [{
 const supportNavTree = [{
   key: 'support',
   path: `${APP_PREFIX_PATH}/support`,
-  title: 'Support',
+  title: 'sidenav.docs.support',
   icon: QuestionOutlined,
   breadcrumb: true,
   submenu: [
     {
       key: 'support-start',
       path: `${APP_PREFIX_PATH}/home`,
-      title: 'Getting Started',
+      title: 'sidenav.docs.tutorial',
       icon: BulbOutlined,
       breadcrumb: true,
       submenu: []
@@ -272,7 +272,7 @@ const supportNavTree = [{
     {
       key: 'support-dev',
       path: `${APP_PREFIX_PATH}/home`,
-      title: 'Developer Docs',
+      title: 'sidenav.docs.dev',
       icon: ReadOutlined,
       breadcrumb: true,
       submenu: []
@@ -280,7 +280,7 @@ const supportNavTree = [{
     {
       key: 'support-changelog',
       path: `${APP_PREFIX_PATH}/home`,
-      title: 'Changelogs',
+      title: 'sidenav.docs.changelog',
       icon: ProfileOutlined,
       breadcrumb: true,
       submenu: []
@@ -288,7 +288,7 @@ const supportNavTree = [{
     {
       key: 'support-cms',
       path: `${APP_PREFIX_PATH}/home`,
-      title: 'Guide to Headless CMS',
+      title: 'sidenav.docs.cms',
       icon: BookOutlined,
       breadcrumb: true,
       submenu: []
@@ -300,7 +300,7 @@ const supportNavTree = [{
 const docsNavTree = [{
   key: 'docs',
   path: `${APP_PREFIX_PATH}/home`,
-  title: 'Docs',
+  title: 'sidenav.docs',
   icon: '',
   breadcrumb: true,
   submenu: [
@@ -312,7 +312,7 @@ const docsNavTree = [{
 const logoutNavTree = [{
   key: 'logout',
   path: `${APP_PREFIX_PATH}/logout`,
-  title: 'Logout',
+  title: 'sidenav.logout',
   icon: LogoutOutlined,
   breadcrumb: true,
   submenu: [],
@@ -322,7 +322,7 @@ const logoutNavTree = [{
 const othersNavTree = [{
   key: 'others',
   path: `${APP_PREFIX_PATH}/home`,
-  title: ' ',
+  title: 'sidenav.empty',
   icon: '',
   breadcrumb: true,
   submenu: [
