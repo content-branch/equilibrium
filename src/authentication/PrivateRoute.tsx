@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Redirect, RouteProps } from "react-router-dom";
 import useAuthenticated from "@hooks/use-authenticated";
-
+import { AUTH_PREFIX_PATH } from 'configs/AppConfig'
 type Props = Omit<RouteProps, "render">;
 
 // A wrapper for <Route> that redirects to the login
@@ -22,7 +22,7 @@ function PrivateRoute({ component, children, ...rest }: Props) {
         ) : (
           <Redirect
             to={{
-              pathname: "/login",
+              pathname: AUTH_PREFIX_PATH+"/login",
               state: { from: location },
             }}
           />
