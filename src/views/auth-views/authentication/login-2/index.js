@@ -1,6 +1,6 @@
 import React from 'react'
 import LoginForm from '../../components/LoginForm'
-import { Row, Col } from "antd";
+import { Row, Col , Typography} from "antd";
 import { useSelector } from 'react-redux';
 
 const backgroundURL = '/img/others/img-17.jpg'
@@ -9,6 +9,8 @@ const backgroundStyle = {
 	backgroundRepeat: 'no-repeat',
 	backgroundSize: 'cover'
 }
+
+const {Title,Paragraph} = Typography;
 
 const LoginTwo = props => {
 	const theme = useSelector(state => state.theme.currentTheme)
@@ -21,7 +23,7 @@ const LoginTwo = props => {
 						<Row justify="center">
 							<Col xs={24} sm={24} md={20} lg={12} xl={8}>
 								<h1>Sign In</h1>
-								<p>Don't have an account yet? <a href="/auth/register-2">Sign Up</a></p>
+								<p>Don't have an account yet? <a href="/auth/register">Sign Up</a></p>
 								<div className="mt-4">
 									<LoginForm {...props}/>
 								</div>
@@ -37,8 +39,8 @@ const LoginTwo = props => {
 						<Row justify="center">
 							<Col xs={0} sm={0} md={0} lg={20}>
 								<img className="img-fluid mb-5" src="/img/others/img-18.png" alt=""/>
-								<h1 className="text-white">Welcome to equilibrium</h1>
-								<p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ullamcorper nisl erat, vel convallis elit fermentum pellentesque.</p>
+								<Title className="text-white">Welcome to Equilibrium</Title>
+								<Paragraph className="text-white">Equilibrium is currently in Beta however your generated apps are production-ready. Every app generated using Equilibrium platform contains popular, documented, secured, and supported production-ready open-source components & packages. Read more about our stack here.</Paragraph>
 							</Col>
 						</Row>
 						<div className="d-flex justify-content-end pb-4">

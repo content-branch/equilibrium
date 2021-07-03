@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { gql, useQuery } from "@apollo/client";
 import * as models from "models";
 
-import useAuthenticated from "../authentication/use-authenticated";
+import useAuthenticated from "@hooks/use-authenticated";
 import { setUserId, identifySetOnce } from "util/analytics";
 
 type TData = {

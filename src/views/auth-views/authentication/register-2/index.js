@@ -1,7 +1,7 @@
 import React from 'react'
 import RegisterForm from '../../components/RegisterForm'
-import { Row, Col } from "antd";
-import { useSelector } from 'react-redux'
+import { Row, Col, Typography } from "antd";
+import { useSelector } from 'react-redux';
 
 const backgroundURL = '/img/others/img-17.jpg'
 const backgroundStyle = {
@@ -9,6 +9,8 @@ const backgroundStyle = {
 	backgroundRepeat: 'no-repeat',
 	backgroundSize: 'cover'
 }
+
+const {Title,Paragraph} = Typography;
 
 const RegisterTwo = props => {
 	const theme = useSelector(state => state.theme.currentTheme)
@@ -21,7 +23,7 @@ const RegisterTwo = props => {
 						<Row justify="center">
 							<Col xs={24} sm={24} md={20} lg={12} xl={8}>
 								<h1>Sign Up</h1>
-								<p>Already have an account? <a href="/auth/login-2">Sign In</a></p>
+								<p>Already have an account? <a href="/auth/login">Sign In</a></p>
 								<div className="mt-4">
 									<RegisterForm {...props} />
 								</div>
@@ -37,8 +39,8 @@ const RegisterTwo = props => {
 						<Row justify="center">
 							<Col xs={0} sm={0} md={0} lg={20}>
 								<img className="img-fluid mb-5" src="/img/others/img-19.png" alt=""/>
-								<h1 className="text-white">Welcome to equilibrium</h1>
-								<p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ullamcorper nisl erat, vel convallis elit fermentum pellentesque.</p>
+								<Title className="text-white">Welcome to Equilibrium</Title>
+								<Paragraph className="text-white">Equilibrium is currently in Beta however your generated apps are production-ready. Every app generated using Equilibrium platform contains popular, documented, secured, and supported production-ready open-source components & packages. Read more about our stack here.</Paragraph>
 							</Col>
 						</Row>
 						<div className="d-flex justify-content-end pb-4">

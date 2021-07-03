@@ -28,6 +28,7 @@ export const Views = (props) => {
           <Route path={APP_PREFIX_PATH}>
             <AppLayout direction={direction} location={location}/>
           </Route>
+          
         </Switch>
       </ConfigProvider>
     </IntlProvider>

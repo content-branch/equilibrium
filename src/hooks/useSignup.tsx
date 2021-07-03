@@ -11,14 +11,8 @@ const useSignup = () => {
 
   const handleSubmit = useCallback(
     (values) => {
-      const { confirmPassword, ...data } = values; // eslint-disable-line @typescript-eslint/no-unused-vars
-      signup({
-        variables: {
-          data: {
-            ...data,
-          },
-        },
-      }).catch(console.error);
+      const { confirm, confirmPassword, ...data } = values; // eslint-disable-line @typescript-eslint/no-unused-vars
+      signup({variables: {data: {...data,},},}).catch(console.error);
     },
     [signup]
   );

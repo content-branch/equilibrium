@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from "react-redux";
-import { Button, Form, Input, Divider, Alert } from "antd";
+import { Form, Input } from "formik-antd";
+import { Button, Divider, Alert } from "antd";
 import { MailOutlined, LockOutlined } from '@ant-design/icons';
 import PropTypes from 'prop-types';
 import { GoogleSVG, FacebookSVG } from 'assets/svg/icon';
@@ -11,11 +12,29 @@ import {
 	hideAuthMessage,
 	authenticated
 } from 'redux/actions/Auth';
-import JwtAuthService from 'services/JwtAuthService'
 import { useHistory } from "react-router-dom";
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
+import useLogin from "@hooks/useLogin";
+import { Formik } from "formik";
+import * as Yup from 'yup';
 
-export const LoginForm = (props) => {
+type Values = {
+	email: string;
+	password: string;
+};
+
+const INITIAL_VALUES: Values = {
+	email: "",
+	password: "",
+};
+
+const LoginSchema = Yup.object().shape({
+	email: Yup.string().email('Please enter a valid email!').required('Please input your email address'),
+	password: Yup.string().required('Please input your password')
+});
+
+
+export const LoginForm = (props:any) => {
 	let history = useHistory();
 
 	const { 
@@ -25,24 +44,21 @@ export const LoginForm = (props) => {
 		onForgetPasswordClick,
 		showLoading,
 		extra,
-		loading,
-		showMessage,
-		message,
-		authenticated,
-		showAuthMessage,
 		token,
 		redirect,
 		allowRedirect
 	} = props
 
-	const onLogin = values => {
+	const {
+		loading,
+		error : showMessage,
+		errorMessage: message,
+		handleSubmit
+	} = useLogin();
+
+	const onLogin = (values: Values)=> {
 		showLoading()
-		const fakeToken = 'fakeToken'
-		JwtAuthService.login(values).then(resp => {
-			authenticated(fakeToken)
-		}).then(e => {
-			showAuthMessage(e)
-		})
+		handleSubmit(values);
 	};
 
 	const onGoogleLogin = () => {
@@ -99,61 +115,67 @@ export const LoginForm = (props) => {
 				}}> 
 				<Alert type="error" showIcon message={message}></Alert>
 			</motion.div>
-			<Form 
-				layout="vertical" 
-				name="login-form"
-				onFinish={onLogin}
-			>
-				<Form.Item 
-					name="email" 
-					label="Email" 
-					rules={[
-						{ 
-							required: true,
-							message: 'Please input your email',
-						},
-						{ 
-							type: 'email',
-							message: 'Please enter a validate email!'
-						}
-					]}>
-					<Input prefix={<MailOutlined className="text-primary" />}/>
-				</Form.Item>
-				<Form.Item 
-					name="password" 
-					label={
-						<div className={`${showForgetPassword? 'd-flex justify-content-between w-100 align-items-center' : ''}`}>
-							<span>Password</span>
-							{
-								showForgetPassword && 
-								<span 
-									onClick={() => onForgetPasswordClick} 
-									className="cursor-pointer font-size-sm font-weight-normal text-muted"
-								>
-									Forget Password?
-								</span>
+			<Formik 
+				initialValues={INITIAL_VALUES} 
+				onSubmit={onLogin} 
+				validationSchema={LoginSchema}
+				render={() => (
+					<Form 
+						layout="vertical" 
+						name="login-form"
+					>
+						<Form.Item 
+							name="email" 
+							label="Email" 
+							rules={[
+								{ 
+									required: true,
+									message: 'Please input your email',
+								},
+								{ 
+									type: 'email',
+									message: 'Please enter a validate email!'
+								}
+							]}>
+							<Input name="email" prefix={<MailOutlined className="text-primary" />}/>
+						</Form.Item>
+						<Form.Item 
+							name="password" 
+							label={
+								<div className={`${showForgetPassword? 'd-flex justify-content-between w-100 align-items-center' : ''}`}>
+									<span>Password</span>
+									{
+										showForgetPassword && 
+										<span 
+											onClick={() => onForgetPasswordClick} 
+											className="cursor-pointer font-size-sm font-weight-normal text-muted"
+										>
+											Forget Password?
+										</span>
+									} 
+								</div>
 							} 
-						</div>
-					} 
-					rules={[
-						{ 
-							required: true,
-							message: 'Please input your password',
+							rules={[
+								{ 
+									required: true,
+									message: 'Please input your password',
+								}
+							]}
+						>
+							<Input.Password name="password" prefix={<LockOutlined className="text-primary" />}/>
+						</Form.Item>
+						<Form.Item name="sign-in">
+							<Button type="primary" htmlType="submit" block loading={loading}>
+								Sign In
+							</Button>
+						</Form.Item>
+						{
+							otherSignIn ? renderOtherSignIn : null
 						}
-					]}
-				>
-					<Input.Password prefix={<LockOutlined className="text-primary" />}/>
-				</Form.Item>
-				<Form.Item>
-					<Button type="primary" htmlType="submit" block loading={loading}>
-						Sign In
-					</Button>
-				</Form.Item>
-				{
-					otherSignIn ? renderOtherSignIn : null
-				}
-				{ extra }
-			</Form>
+						{ extra }
+					</Form>
+				)}
+			/>
 		</>
 	)
 }
@@ -172,7 +194,7 @@ LoginForm.defaultProps = {
 	showForgetPassword: false
 };
 
-const mapStateToProps = ({auth}) => {
+const mapStateToProps = ({auth}:any) => {
 	const {loading, message, showMessage, token, redirect} = auth;
   	return {loading, message, showMessage, token, redirect}
 }

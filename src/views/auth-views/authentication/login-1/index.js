@@ -9,6 +9,7 @@ const backgroundStyle = {
 	backgroundSize: 'cover'
 }
 
+
 const LoginOne = props => {
 	const theme = useSelector(state => state.theme.currentTheme)
 	return (
@@ -19,7 +20,7 @@ const LoginOne = props => {
 						<Card>
 							<div className="my-4">
 								<div className="text-center">
-									<img className="img-fluid" src={`/img/${theme === 'light' ? 'logo.png': 'logo-white.png'}`} alt="" />
+									<img className="img-fluid" src={`/img/${theme === 'light' ? 'logo.png': 'logo-white.png'}`} alt="" width="170px" style={{marginBottom:20}}/>
 									<p>Don't have an account yet? <a href="/auth/register-1">Sign Up</a></p>
 								</div>
 								<Row justify="center">

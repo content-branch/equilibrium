@@ -7,7 +7,7 @@ import { formatError } from "util/error";
 import queryString from "query-string";
 import { DEFAULT_PAGE_SOURCE, SIGN_IN_PAGE_CONTENT } from "@amp-components/User/constants";
 
-import "./Login.scss";
+// import "./Login.scss";
 
 interface LocationStateInterface {
   from?: Location;
