@@ -84,13 +84,12 @@ $item-height: 48px;
     justify-content: flex-start;
 
     > div {
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-
-      i {
-        font-size: $icon-font-size-medium;
-        margin-right: var(--default-spacing);
+      width: 100%;
+      & .suggestion-result{
+        display: flex;
+        width:100%;
+        justify-content: space-between;
+        align-items: center;
       }
     }
     .circle-badge {
@@ -111,6 +110,5 @@ $item-height: 48px;
   &__app-name {
     @include semiBold;
     color: var(--black80);
-    margin-right: var(--default-spacing);
   }
 }

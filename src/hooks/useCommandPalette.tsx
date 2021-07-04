@@ -1,9 +1,18 @@
 import React, { useState, useMemo } from "react";
 import { useQuery, gql } from "@apollo/client";
 import { History } from "history";
-
+import { 
+	AppstoreOutlined,
+	AntDesignOutlined,
+	SafetyCertificateOutlined,
+	CodeOutlined,
+	BranchesOutlined,
+	SettingOutlined,
+	DatabaseOutlined,
+	ApartmentOutlined
+} from '@ant-design/icons';
+import { APP_PREFIX_PATH } from 'configs/AppConfig';
 import { useHistory, useRouteMatch } from "react-router-dom";
-
 import * as models from "models";
 
 export type AppDescriptor = Pick<models.App, "id" | "name" | "color">;
@@ -52,20 +61,47 @@ const TYPE_ROLES = "roles";
 
 const STATIC_COMMANDS = [
   {
-    name: "Applications",
+    name: "Dashboard",
     link: "/",
+    type: "dashboard"
   },
+  {
+    name: "Workspaces",
+    link: `${APP_PREFIX_PATH}/workspaces`,
+    type: "workspaces"
+  },
+  {
+    name: "Command (CLI)",
+    link: `${APP_PREFIX_PATH}/console`,
+    type: "console"
+  },
+  {
+    name: "Version Control",
+    link: `${APP_PREFIX_PATH}/version/commits`,
+    type: "version"
+  },
+  {
+    name: "Settings",
+    link: `${APP_PREFIX_PATH}/settings`,
+    type: "settings"
+  },
+  {
+    name: "Applications",
+    link: `${APP_PREFIX_PATH}/applications/overview`,
+    type: "applications"
+  }
+
 ];
 
 const APPLICATION_COMMANDS = [
   {
     name: "Entities",
-    link: "/:id/entities",
+    link: `${APP_PREFIX_PATH}/applications/:id/entities`,
     type: TYPE_ENTITY,
   },
   {
     name: "Roles",
-    link: "/:id/roles",
+    link: `${APP_PREFIX_PATH}/settings/permissions/:id/`,
     type: TYPE_ROLES,
   },
 ];
@@ -98,26 +134,55 @@ const useCommandPalette = () => {
   return result;
 };
 
+const getCategoryIcon = (category:string) => {
+	switch (category) {
+    case 'app':
+      return <AppstoreOutlined className="text-danger"/>;
+    case 'entity':
+			return <DatabaseOutlined className="text-primary"/>;	
+    case 'roles':
+      return <SafetyCertificateOutlined className="text-warning"/>;
+    case 'dashboard':
+      return <AntDesignOutlined className="text-success"/>;
+    case 'workspaces':
+      return <ApartmentOutlined className="text-danger"/>;
+    case 'applications':
+      return <AppstoreOutlined className="text-primary"/>;
+    case 'entities':
+      return <DatabaseOutlined className="text-primary"/>;	
+    case 'console':
+      return <CodeOutlined className="text-warning"/>;
+    case 'version':
+      return <BranchesOutlined className="text-warning"/>;
+    case 'settings':
+      return <SettingOutlined className="text-warning"/>;
+		default:
+			return null;
+	}
+}
+
 export default useCommandPalette;
 
 function CommandPaletteItem(suggestion: Command) {
   // A suggestion object will be passed to your custom component for each command
-  const {  appName, name, highlight, showAppData } = suggestion;
-  //appColor, type
+  const {  appName, name, highlight, showAppData, type } = suggestion;
   return (
-    <>
+    <span className="suggestion-result">
       {showAppData && (
-        <>
+        
           <span className="command-palette__app-name">{appName}</span>
-        </>
       )}
-      {/* <Icon icon={type} /> */}
-      {highlight && highlight[0] ? (
-        <span dangerouslySetInnerHTML={{ __html: highlight[0] }} />
-      ) : (
-        <span>{name}</span>
-      )}
-    </>
+      <span className="command-palette__app-type">
+        <span className="icon">
+          {getCategoryIcon(type)} &nbsp;
+        </span>
+        {highlight && highlight[0] ? (
+          <span dangerouslySetInnerHTML={{ __html: highlight[0] }} />
+        ) : (
+          <span>{name}</span>
+        )}
+      </span>
+    </span>
   );
 }
 
@@ -148,7 +213,7 @@ export function getStaticCommands(history: History): Command[] {
         history,
         command.name,
         command.link,
-        TYPE_APP,
+        command.type,
         false,
         false
       )
@@ -163,7 +228,7 @@ export function getAppCommands(
   const appCommand = new NavigationCommand(
     history,
     app.name,
-    `/${app.id}`,
+    `${APP_PREFIX_PATH}/applications/${app.id}`,
     TYPE_APP,
     isCurrentApp,
     true,
@@ -196,7 +261,7 @@ export function getEntityCommands(
     new NavigationCommand(
       history,
       entity.displayName,
-      `/${app.id}/entities/${entity.id}`,
+      `${APP_PREFIX_PATH}/applications/${app.id}/content-model/${entity.id}`,
       TYPE_ENTITY,
       isCurrentApp,
       true,

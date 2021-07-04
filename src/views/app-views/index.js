@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from "react";
 import { Switch, Redirect } from "react-router-dom";
 import Loading from 'components/shared-components/Loading';
-import { APP_PREFIX_PATH } from 'configs/AppConfig'
+import { APP_PREFIX_PATH } from 'configs/AppConfig';
 import PrivateRoute from "authentication/PrivateRoute";
 
 export const AppViews = () => {

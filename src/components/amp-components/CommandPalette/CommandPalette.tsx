@@ -29,25 +29,6 @@ export interface Command {
 
 const HOT_KEYS = ["command+shift+p", "ctrl+shift+p"];
 
-// const chrome = {
-//   modal:                      "chrome-modal",
-//   overlay:                    "chrome-overlay",
-//   container:                  "chrome-container",
-//   content:                    "chrome-content",
-//   containerOpen:              "chrome-containerOpen",
-//   input:                      "chrome-input",
-//   inputOpen:                  "chrome-inputOpen",
-//   inputFocused:               "chrome-inputFocused",
-//   spinner:                    "chrome-spinner",
-//   suggestionsContainer:       "chrome-suggestionsContainer",
-//   suggestionsContainerOpen:   "chrome-suggestionsContainerOpen",
-//   suggestionsList:            "chrome-suggestionsList",
-//   suggestion:                 "chrome-suggestion",
-//   suggestionFirst:            "chrome-suggestionFirst",
-//   suggestionHighlighted:      "chrome-suggestionHighlighted",
-//   trigger:                    "chrome-trigger"
-// }
-
 const THEME = {
   // modal: "command-palette__modal",
   modal: "command-palette__modal",
