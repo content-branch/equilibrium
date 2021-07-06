@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
+import ApplicationList from "@amp-components/Workspaces/ApplicationList";
 
 const Overview = () => {
 	return (
 		<div>
-			Overview
+			<ApplicationList />
 		</div>
 	)
 }

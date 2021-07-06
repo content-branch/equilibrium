@@ -27,6 +27,7 @@
 
 body {
   color: var(--black100);
+  font-size: var(--normal-font-size);
 }
 
 #root {
@@ -73,16 +74,6 @@ div[tabindex="-1"]:focus {
   background-color: var(--black40);
 }
 
-body {
-  margin: 0;
-  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-    "Helvetica Neue", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background: var(--surface);
-  font-size: var(--normal-font-size);
-}
 
 :root {
   --mdc-top-bar-adjust: 50px;
