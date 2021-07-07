@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { gql, useQuery, useMutation, useApolloClient } from "@apollo/client";
 import { useHistory } from "react-router-dom";
-import { setToken } from "../authentication/authentication";
+import { setToken } from "authentication/authentication";
 import * as models from "models";
 
 type TData = {
@@ -15,7 +15,7 @@ type TSetData = {
 };
 
 function useWorkspaceSelector() {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(true);
   const [newWorkspace, setNewWorkspace] = useState<boolean>(false);
 
   const apolloClient = useApolloClient();
@@ -41,7 +41,7 @@ function useWorkspaceSelector() {
     if (setCurrentData) {
       apolloClient.clearStore();
       setToken(setCurrentData.setCurrentWorkspace.token);
-      history.replace("/");
+      history.replace("/app/workspaces");
       window.location.reload();
     }
   }, [setCurrentData, history, apolloClient]);

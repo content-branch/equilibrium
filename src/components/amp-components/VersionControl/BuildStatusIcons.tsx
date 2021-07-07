@@ -1,6 +1,6 @@
 import React from "react";
 import * as models from "models";
-import { Tooltip, Badge } from "antd";
+import { Tooltip } from "antd";
 import { BuildStepsStatus } from "@amp-components/VersionControl/BuildStepsStatus";
 import "./BuildStatusIcons.scss";
 import useBuildStatusIcons from "@hooks/useBuildStatusIcons";

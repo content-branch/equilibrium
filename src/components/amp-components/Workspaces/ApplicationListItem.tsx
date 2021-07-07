@@ -14,11 +14,10 @@ const CLASS_NAME = "application-list-item";
 
 
 function ApplicationListItem({ app }: Props) {
-  const { id, name, description, color } = app;
+  const { id, name, description } = app;
 
   const {
     lastBuildDate,
-    handleClick
   } = useApplicationListItem({app});
 
   return (

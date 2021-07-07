@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { isEmpty } from "lodash";
-import { Spin, message } from 'antd';
+import { Spin, message, Empty } from 'antd';
 import SearchInput from "@amp-components/Workspaces/SearchInput";
 import { Button, Row, Col } from "antd";
 import { SvgThemeImage, EnumImages } from "@amp-components/Components/SvgThemeImage";
@@ -54,7 +54,13 @@ function ApplicationList() {
         <div className={`${CLASS_NAME}__empty-state`}>
           <SvgThemeImage image={EnumImages.AddApp} />
           <div className={`${CLASS_NAME}__empty-state__title`}>
-            There are no apps to show
+            <Empty 
+              description={
+                <span>
+                  There are no apps to show
+                </span>
+              }
+            />
           </div>
         </div>
       ) : (
