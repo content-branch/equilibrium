@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Menu, Grid } from "antd";
 import IntlMessage from "../util-components/IntlMessage";
@@ -29,6 +29,14 @@ const setDefaultOpen = (key) => {
   return keyList;
 };
 
+const usePrevious = (value) => {
+  const ref = useRef();
+  useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current;
+}
+
 const SideNavContent = (props) => {
 	const { sideNavTheme, routeInfo, hideGroupTitle, localization, onMobileNavToggle } = props;
 	const isMobile = !utils.getBreakPoint(useBreakpoint()).includes('lg');
@@ -37,12 +45,18 @@ const SideNavContent = (props) => {
 			onMobileNavToggle(false)
 		}
   }
+  const previousRouteInfo = usePrevious({routeInfo});
 
   const [selectedKeys, setSelectedKeys] = useState([]);
   
   useEffect(() => {
-    setSelectedKeys([routeInfo?.key]);
-  }, [routeInfo?.key]);
+    if(routeInfo?.key){
+      setSelectedKeys([routeInfo?.key]);
+    }
+    else if(previousRouteInfo?.routeInfo){
+      setSelectedKeys([previousRouteInfo?.routeInfo.key]);
+    }
+  }, [routeInfo?.key, previousRouteInfo?.routeInfo]);
 
   return (
     <Menu

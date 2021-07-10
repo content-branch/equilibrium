@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Grid, Drawer } from "antd";
 import utils from 'utils'
 import { MenuOutlined } from '@ant-design/icons';
+import "./InnerAppLayout.scss";
 
 const { useBreakpoint } = Grid;
 

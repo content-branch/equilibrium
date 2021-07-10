@@ -94,7 +94,7 @@ const entitiesBoardNavTree = [{
   submenu: [
     {
       key: 'entities-content-model',
-      path: `${APP_PREFIX_PATH}/entities/content-model`,
+      path: `${APP_PREFIX_PATH}/entities/content-model/entities`,
       title: 'sidenav.entities.content-model',
       icon: BlockOutlined,
       breadcrumb: true,
