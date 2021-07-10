@@ -57,7 +57,7 @@ function ApplicationList() {
             <Empty 
               description={
                 <span>
-                  There are no apps to show
+                  There are no app to show
                 </span>
               }
             />

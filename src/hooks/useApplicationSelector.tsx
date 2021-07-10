@@ -6,14 +6,16 @@ import { useHistory } from "react-router-dom";
 
 
 export const CURRENT_APPLICATION = 'currentApplication';
+const DEFAULT_REDIRECTION = "/app/workspaces"
 
-function useApplicationSelector() {
+function useApplicationSelector(redirection?:string) {
   const [isOpen, setIsOpen] = useState<boolean>(true);
   const history = useHistory();
+
   const handleSetCurrentApplication = useCallback((application: Props) => {
       setIsOpen(false);
       setLSCurrentApplication(application.app.id);
-      history.replace("/app/workspaces");
+      history.replace(redirection?redirection:DEFAULT_REDIRECTION);
       window.location.reload();
     },
     [setLSCurrentApplication]

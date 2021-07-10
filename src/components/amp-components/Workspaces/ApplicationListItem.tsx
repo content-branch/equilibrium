@@ -7,11 +7,13 @@ import { BuildStatusIcons } from "@amp-components/VersionControl/BuildStatusIcon
 import useApplicationListItem, { Props } from "@hooks/useApplicationListItem";
 import { Card, Tag, Tooltip, Row } from "antd";
 import "./ApplicationListItem.scss";
+import { APP_PREFIX_PATH } from 'configs/AppConfig';
+import useApplicationSelector from "@hooks/useApplicationSelector";
 
 
 const DATE_FORMAT = "P p";
 const CLASS_NAME = "application-list-item";
-
+const ENTITIES_REDIRECTION = `${APP_PREFIX_PATH}/entities`;
 
 function ApplicationListItem({ app }: Props) {
   const { id, name, description } = app;
@@ -20,8 +22,10 @@ function ApplicationListItem({ app }: Props) {
     lastBuildDate,
   } = useApplicationListItem({app});
 
+  const {handleSetCurrentApplication} = useApplicationSelector(ENTITIES_REDIRECTION);
+
   return (
-    <NavLink to={`/${id}`}>
+    <NavLink to={ENTITIES_REDIRECTION} onClick={() => {handleSetCurrentApplication({app})}}>
       <Card hoverable title={`${name}`} bordered={true} size='default'>
         <div className={`${CLASS_NAME}__row`}>
           <span className={`${CLASS_NAME}__description`}>{description}</span>
