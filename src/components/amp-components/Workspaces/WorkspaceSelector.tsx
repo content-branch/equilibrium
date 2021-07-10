@@ -3,7 +3,7 @@ import classNames from "classnames";
 import WorkspaceSelectorList from "@amp-components/Workspaces/WorkspaceSelectorList";
 import useWorkspaceSelector from "@hooks/useWorkspaceSelector";
 import { Spin, Button } from "antd";
-import { SwitcherOutlined , FolderOutlined } from '@ant-design/icons';
+import { SwitcherOutlined } from '@ant-design/icons';
 import "./WorkspaceSelector.scss";
 
 
@@ -16,7 +16,6 @@ function WorkspaceSelector() {
     loading,
     isOpen,
     data,
-    newWorkspace,
     handleNewWorkspaceClick,
     handleSetCurrentWorkspace,
     handleOpen

@@ -18,7 +18,7 @@ function useApplicationSelector(redirection?:string) {
       history.replace(redirection?redirection:DEFAULT_REDIRECTION);
       window.location.reload();
     },
-    [setLSCurrentApplication]
+    [ history, redirection]
   );
 
   const handleOpen = useCallback(() => {
@@ -54,7 +54,7 @@ const setLSCurrentApplication = (applicationId: string) => {
   localStorage.setItem(CURRENT_APPLICATION, applicationId);
 }
 
-const getLSCurrentApplication = () => {
+export const getLSCurrentApplication = () => {
   return localStorage.getItem(CURRENT_APPLICATION) || null;
 }
 

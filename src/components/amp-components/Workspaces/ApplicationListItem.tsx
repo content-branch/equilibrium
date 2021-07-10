@@ -16,7 +16,7 @@ const CLASS_NAME = "application-list-item";
 const ENTITIES_REDIRECTION = `${APP_PREFIX_PATH}/entities`;
 
 function ApplicationListItem({ app }: Props) {
-  const { id, name, description } = app;
+  const { name, description } = app;
 
   const {
     lastBuildDate,

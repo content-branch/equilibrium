@@ -4,7 +4,7 @@ import { gql, useQuery } from "@apollo/client";
 
 import { formatError } from "util/error";
 import * as models from "models";
-import useNavigationTabs from "@hooks/useNavigationTabs";
+import {getLSCurrentApplication} from "@hooks/useApplicationSelector";
 
 type TData = {
   entities: models.Entity[];
@@ -15,15 +15,14 @@ export type Props = {
 };
 
 const NAME_FIELD = "displayName";
-const NAVIGATION_KEY = "ENTITY_LIST";
 
 const POLL_INTERVAL = 2000;
 
 const useEntityList = ({ match }: Props) => {
-  const { application } = match.params;
-  const [error, setError] = useState<Error>();
 
-  useNavigationTabs(application, NAVIGATION_KEY, match.url, "Entities");
+  const application = getLSCurrentApplication() || '';
+
+  const [error, setError] = useState<Error>();
 
   const [searchPhrase, setSearchPhrase] = useState<string>("");
   const [newEntity, setNewEntity] = useState<boolean>(false);
