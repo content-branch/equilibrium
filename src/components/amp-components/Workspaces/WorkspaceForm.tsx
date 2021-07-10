@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import { Form, Input } from "formik-antd";
 import { Formik } from "formik";
-import { message, Empty } from 'antd';
+import { message, Empty, Row, Col } from 'antd';
 import * as models from "models";
 import FormikAutoSave from "@amp-components/util/formikAutoSave";
 import useWorkspaceForm from "@hooks/useWorkspaceForm";
 import { validate } from "../util/formikValidateJsonSchema";
 import WorkspaceSelector from "@amp-components/Workspaces/WorkspaceSelector";
+import ApplicationSelector from "@amp-components/Application/ApplicationSelector";
 import "./WorkspaceForm.scss";
 
 
@@ -51,18 +52,35 @@ function WorkspaceForm() {
                 size="large"
               >
                 <FormikAutoSave debounceMS={1000} />
-                <Form.Item
-                    label="Workspace Name"
-                    name="name" 
-                >
-                  <Input name="name" placeholder="Workspace Name" />
-                </Form.Item>
-                <Form.Item
-                    label="Workspace Selector"
-                    name="workspace" 
-                >
-                  <WorkspaceSelector />
-                </Form.Item>
+                <Row>
+                  <Col span={11}>
+                    <Form.Item
+                      label="Workspace Name"
+                      name="name" 
+                  >
+                    <Input name="name" placeholder="Workspace Name" />
+                  </Form.Item>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col span={11}>
+                      <Form.Item
+                        label="Workspace Selector"
+                        name="workspace" 
+                    >
+                      <WorkspaceSelector />
+                    </Form.Item>
+                  </Col>
+                  <Col span={12} offset={1}>
+                      <Form.Item
+                        label="Current Application"
+                        name="applicatioon" 
+                    >
+                      <ApplicationSelector />
+                    </Form.Item>
+                  </Col>
+                </Row>
+                
                 <Form.Item
                     label="Workspace Members"
                     name="members" 

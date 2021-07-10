@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { formatError } from "util/error";
 import { isMobileOnly } from "react-device-detect";
@@ -13,6 +13,10 @@ type TData = {
 function useApplicationList() {
   const { trackEvent } = useTracking();
   const [searchPhrase, setSearchPhrase] = useState<string>("");
+
+  useEffect(() => {
+    setSearchPhrase("");
+  }, []);
 
   const handleSearchChange = useCallback(
     (value) => {
@@ -37,8 +41,6 @@ function useApplicationList() {
     });
   }, [trackEvent]);
 
-  
-  
   const result = {
     loading,
     isMobileOnly,

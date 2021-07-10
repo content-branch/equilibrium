@@ -3,6 +3,7 @@ import { gql, useQuery, useMutation, useApolloClient } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import { setToken } from "authentication/authentication";
 import * as models from "models";
+import { CURRENT_APPLICATION } from "@hooks/useApplicationSelector";
 
 type TData = {
   currentWorkspace: models.Workspace;
@@ -28,6 +29,7 @@ function useWorkspaceSelector() {
   const handleSetCurrentWorkspace = useCallback(
     (workspace: models.Workspace) => {
       setIsOpen(false);
+      localStorage.removeItem(CURRENT_APPLICATION);
       setCurrentWorkspace({
         variables: {
           workspaceId: workspace.id,

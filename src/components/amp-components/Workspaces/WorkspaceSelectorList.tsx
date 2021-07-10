@@ -5,7 +5,6 @@ import WorkspaceSelectorListItem from "@amp-components/Workspaces/WorkspaceSelec
 import { Spin, Button, Card} from "antd";
 import { FolderAddOutlined } from '@ant-design/icons';
 
-
 const CLASS_NAME = "workspaces-selector__list";
 
 type Props = {
