@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useContext} from "react";
 import { Link } from "react-router-dom";
-import { Menu, Grid } from "antd";
+import { Menu, Grid, Badge } from "antd";
 import IntlMessage from "../util-components/IntlMessage";
 import Icon from "../util-components/Icon";
 import navigationConfig from "configs/NavigationConfig";
@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import { SIDE_NAV_LIGHT, NAV_TYPE_SIDE } from "constants/ThemeConstant";
 import utils from 'utils'
 import { onMobileNavToggle } from "redux/actions/Theme";
+import useApplicationLayout from "@hooks/useApplicationLayout";
 
 const { SubMenu } = Menu;
 const { useBreakpoint } = Grid;
@@ -58,6 +59,8 @@ const SideNavContent = (props) => {
     }
   }, [routeInfo?.key, previousRouteInfo?.routeInfo]);
 
+  const {pendingChangesBadge} = useApplicationLayout();
+
   return (
     <Menu
       theme={sideNavTheme === SIDE_NAV_LIGHT ? "light" : "dark"}
@@ -98,11 +101,19 @@ const SideNavContent = (props) => {
                   ))}
                 </SubMenu>
               ) : (
-                <Menu.Item key={subMenuFirst.key}>
-                  {subMenuFirst.icon ? <Icon type={subMenuFirst.icon} /> : null}
-                  <span>{setLocale(localization, subMenuFirst.title)}</span>
-                  <Link onClick={() => closeMobileNav()} to={subMenuFirst.path} />
-                </Menu.Item>
+                subMenuFirst.badge?(
+                  <Menu.Item key={subMenuFirst.key}>
+                    {subMenuFirst.icon ? <Icon type={subMenuFirst.icon} /> : null}
+                    <span>{setLocale(localization, subMenuFirst.title)}&nbsp;&nbsp;<Badge count={pendingChangesBadge} overflowCount={10}></Badge></span>
+                    <Link onClick={() => closeMobileNav()} to={subMenuFirst.path} />
+                  </Menu.Item>
+                ):(
+                  <Menu.Item key={subMenuFirst.key}>
+                    {subMenuFirst.icon ? <Icon type={subMenuFirst.icon} /> : null}
+                    <span>{setLocale(localization, subMenuFirst.title)}</span>
+                    <Link onClick={() => closeMobileNav()} to={subMenuFirst.path} />
+                  </Menu.Item>
+                )
               )
             )}
           </Menu.ItemGroup>

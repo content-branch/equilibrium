@@ -175,6 +175,7 @@ const versionControlNavTree = [{
       title: 'sidenav.version.staging',
       icon: BranchesOutlined,
       breadcrumb: true,
+      badge:true,
       submenu: []
     },
     {

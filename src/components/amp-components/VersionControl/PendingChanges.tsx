@@ -46,7 +46,7 @@ const PendingChanges = ({ applicationId }: Props) => {
                       header={
                         <Row className={`${CLASS_NAME}__group-title`} align="middle">
                           <Col span={22}></Col>
-                          <Col span={2}><Badge count={data?.pendingChanges.length}>
+                          <Col span={2}><Badge count={data?.pendingChanges.length} overflowCount={10}>
                             <Avatar shape="square" icon={<BranchesOutlined />} />
                             </Badge>
                           </Col>
