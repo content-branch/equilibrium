@@ -8,7 +8,9 @@ import useNavigationTabs from "@hooks/useNavigationTabs";
 import { useTracking } from "util/analytics";
 
 export type Props = {
-  match: match<{ application: string; entityId: string; fieldId: string }>;
+  match: match<{ fieldId: string }>;
+  entityId: string;
+  application: string;
 };
 
 type TData = {
@@ -20,8 +22,7 @@ type UpdateData = {
 };
 const NAVIGATION_KEY = "ENTITY";
 
-const useEntity = ({ match }: Props) => {
-  const { entityId, application } = match.params;
+const useEntity = ({ match, entityId, application }: Props) => {
   const { trackEvent } = useTracking();
   const pendingChangesContext = useContext(PendingChangesContext);
   const location = useLocation();

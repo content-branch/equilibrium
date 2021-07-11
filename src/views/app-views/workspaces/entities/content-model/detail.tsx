@@ -1,16 +1,37 @@
-import React from 'react'
-import { Row, Col, Empty, Divider, PageHeader, Tag } from 'antd';
+import React, {useEffect} from 'react'
+import { Row, Col, Empty, Divider, PageHeader, Tag, message, Spin } from 'antd';
 import useEntityList from "@hooks/useEntityList";
+import useEntity from "@hooks/useEntity";
 import LockStatusIcon from "@amp-components/VersionControl/LockStatusIcon";
+import EntityForm from "@amp-components/Entity/EntityForm";
 import Permission from './permission';
+import Fields from './fields';
+import { SettingTwoTone } from '@ant-design/icons';
+import './Fields.scss';
 
 const Detail = ({ match }: any) => {
-	const {entityId} = match.params;
-	const { data} = useEntityList({ match });
-	const entity = data?.entities?.find(element =>  element.id === entityId);
+	const { entityId } = match.params;
+	const { application  } = useEntityList({ match });
+	const {
+		loading,
+		data,
+		error,
+		errorMessage,
+		updateError,
+		handleSubmit
+	} = useEntity({match, entityId, application});
+
+	useEffect(() => {
+		if(error || updateError){
+			message.error(errorMessage);
+		}
+	}, [error, errorMessage, updateError]);
+
+	const entity = data?.entity;
 
 	return (
 		<div>
+			{loading && <Spin />}
 			<PageHeader
 				className="site-page-header"
 				title={<h1>{entity?.displayName}</h1>}
@@ -30,24 +51,23 @@ const Detail = ({ match }: any) => {
 				entity ?
 				(
 					<>
-						<PageHeader
-							className="site-page-header"
-							title={<h3>General settings</h3>}
-						/>
-						
-						<Row>
-							
+						<Row className={`fields-section`}>
+							<Fields entityId={ entity?.id }/>
 						</Row>
-						<Divider />
-						<PageHeader
-							className="site-page-header"
-							title={<h3 className="mb-4">Fields</h3>}
-						/>
-						<Row>
-							
-						</Row>
-						<Divider />
 						<Permission />
+						<Divider />
+						<PageHeader
+							className="site-section-header"
+							title={<h3><SettingTwoTone  twoToneColor="#52c41a"/> General settings</h3>}
+						/>
+						<Row>
+							<EntityForm
+								entity={entity}
+								applicationId={application}
+								onSubmit={handleSubmit}
+							/>
+						</Row>
+						
 					</>
 				):
 				(

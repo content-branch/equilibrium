@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo, useEffect } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { formatError } from "util/error";
 import * as models from "models";
@@ -17,6 +17,10 @@ export type Props = {
 const useEntityFieldList = ({ entityId }: Props) => {
   const [searchPhrase, setSearchPhrase] = useState<string>("");
   const [error, setError] = useState<Error>();
+
+  useEffect(() => {
+    setSearchPhrase("");
+  }, []);
 
   const { data, loading, error: errorLoading } = useQuery<TData>(GET_FIELDS, {
     variables: {
