@@ -74,7 +74,7 @@ const Detail = ({ match }: any) => {
 					<Empty 
 						description={
 							<span>
-								Entity of id <Tag><b>{entityId}</b></Tag>is not a valid entity for this application. Please verify!
+								Entity of id <Tag><b>{entityId}</b></Tag>is not a valid entity for this application. Please verify your workspace!
 							</span>
 						}
 					/>

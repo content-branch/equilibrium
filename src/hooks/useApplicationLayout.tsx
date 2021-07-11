@@ -1,5 +1,4 @@
 import { useState, useCallback, useEffect, useMemo } from "react";
-import { match } from "react-router-dom";
 import { gql, useQuery } from "@apollo/client";
 import { GET_APPLICATION } from "@hooks/useApplicationHome";
 import * as models from "models";
@@ -7,6 +6,7 @@ import * as models from "models";
 import {
   PendingChangeItem,
 } from "@amp-components/VersionControl/PendingChangesContext";
+import { getLSCurrentApplication } from "@hooks/useApplicationSelector";
 
 
 export enum EnumFixedPanelKeys {
@@ -22,19 +22,12 @@ export type PendingChangeStatusData = {
   pendingChanges: PendingChangeItem[];
 };
 
-type Props = {
-  match: match<{
-    application: string;
-    appModule: string;
-    className?: string;
-  }>;
-};
-
-function useApplicationLayout({ match }: Props) {
-  const { application } = match.params;
+function useApplicationLayout() {
 
   const [pendingChanges, setPendingChanges] = useState<PendingChangeItem[]>([]);
   const [commitRunning, setCommitRunning] = useState<boolean>(false);
+  const application = getLSCurrentApplication();
+
 
   const [selectedFixedPanel, setSelectedFixedPanel] = useState<string>(
     EnumFixedPanelKeys.PendingChanges
@@ -60,7 +53,7 @@ function useApplicationLayout({ match }: Props) {
 
   const { data: applicationData } = useQuery<ApplicationData>(GET_APPLICATION, {
     variables: {
-      id: match.params.application,
+      id: application,
     },
   });
 
@@ -117,7 +110,9 @@ function useApplicationLayout({ match }: Props) {
   }, [refetch]);
 
   const setCommitRunningCallback = useCallback(
+    
     (isRunning: boolean) => {
+      console.log("Tonga ato ve");
       setCommitRunning(isRunning);
     },
     [setCommitRunning]

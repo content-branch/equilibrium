@@ -12,8 +12,9 @@ import {
 	ApartmentOutlined
 } from '@ant-design/icons';
 import { APP_PREFIX_PATH } from 'configs/AppConfig';
-import { useHistory, useRouteMatch } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import * as models from "models";
+import {getLSCurrentApplication} from '@hooks/useApplicationSelector';
 
 export type AppDescriptor = Pick<models.App, "id" | "name" | "color">;
 export type EntityDescriptor = Pick<models.Entity, "id" | "displayName">;
@@ -77,7 +78,7 @@ const STATIC_COMMANDS = [
   },
   {
     name: "Version Control",
-    link: `${APP_PREFIX_PATH}/version/commits`,
+    link: `${APP_PREFIX_PATH}/version/`,
     type: "version"
   },
   {
@@ -96,7 +97,7 @@ const STATIC_COMMANDS = [
 const APPLICATION_COMMANDS = [
   {
     name: "Entities",
-    link: `${APP_PREFIX_PATH}/applications/:id/entities`,
+    link: `${APP_PREFIX_PATH}/entities/content-model/:id/`,
     type: TYPE_ENTITY,
   },
   {
@@ -107,9 +108,8 @@ const APPLICATION_COMMANDS = [
 ];
 
 const useCommandPalette = () => {
-  const match = useRouteMatch<{ applicationId: string }>("/:applicationId/");
 
-  const { applicationId } = match?.params || {};
+  const applicationId = getLSCurrentApplication() || "";
 
   const history = useHistory();
   const [query, setQuery] = useState("");
@@ -168,10 +168,7 @@ function CommandPaletteItem(suggestion: Command) {
   const {  appName, name, highlight, showAppData, type } = suggestion;
   return (
     <span className="suggestion-result">
-      {showAppData && (
-        
-          <span className="command-palette__app-name">{appName}</span>
-      )}
+      
       <span className="command-palette__app-type">
         <span className="icon">
           {getCategoryIcon(type)} &nbsp;
@@ -182,6 +179,9 @@ function CommandPaletteItem(suggestion: Command) {
           <span>{name}</span>
         )}
       </span>
+      {showAppData && (
+          <span className="command-palette__app-name">{appName}</span>
+      )}
     </span>
   );
 }
@@ -228,7 +228,7 @@ export function getAppCommands(
   const appCommand = new NavigationCommand(
     history,
     app.name,
-    `${APP_PREFIX_PATH}/applications/${app.id}`,
+    `${APP_PREFIX_PATH}/entities/content-model/`,
     TYPE_APP,
     isCurrentApp,
     true,
@@ -236,8 +236,9 @@ export function getAppCommands(
     app.color
   );
   const appCommands = APPLICATION_COMMANDS.map(
-    (command) =>
-      new NavigationCommand(
+    (command) =>{
+
+      return new NavigationCommand(
         history,
         command.name,
         command.link.replace(":id", app.id),
@@ -247,6 +248,7 @@ export function getAppCommands(
         app.name,
         app.color
       )
+    }
   );
   return [appCommand, ...appCommands];
 }

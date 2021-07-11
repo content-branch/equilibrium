@@ -3,9 +3,18 @@ import { Switch, Redirect } from "react-router-dom";
 import Loading from 'components/shared-components/Loading';
 import { APP_PREFIX_PATH } from 'configs/AppConfig';
 import PrivateRoute from "authentication/PrivateRoute";
+import PendingChangesContext from "@amp-components/VersionControl/PendingChangesContext";
+import useApplicationLayout from "@hooks/useApplicationLayout";
+
 
 export const AppViews = () => {
+  
+  const {
+    pendingChangesContextValue,
+  } = useApplicationLayout();
+
   return (
+    <PendingChangesContext.Provider value={pendingChangesContextValue}>
     <Suspense fallback={<Loading cover="content"/>}>
       <Switch>
         <PrivateRoute exact path={`${APP_PREFIX_PATH}/`}>
@@ -41,12 +50,13 @@ export const AppViews = () => {
         <Redirect from={`${APP_PREFIX_PATH}/applications`}                        to={`${APP_PREFIX_PATH}/applications/overview`} />
         <Redirect from={`${APP_PREFIX_PATH}/entities`}                            to={`${APP_PREFIX_PATH}/entities/content-model`} />
         <Redirect from={`${APP_PREFIX_PATH}/console`}                             to={`${APP_PREFIX_PATH}/console/cli`} />
-        <Redirect from={`${APP_PREFIX_PATH}/version`}                             to={`${APP_PREFIX_PATH}/version/commits`} />
+        <Redirect from={`${APP_PREFIX_PATH}/version`}                             to={`${APP_PREFIX_PATH}/version/staging`} />
         <Redirect from={`${APP_PREFIX_PATH}/settings`}                            to={`${APP_PREFIX_PATH}/settings/edit-profile`} />
         <Redirect from={`${APP_PREFIX_PATH}`}                                     to={`${APP_PREFIX_PATH}/404`} />
         
       </Switch>
     </Suspense>
+    </PendingChangesContext.Provider>
   )
 }
 
