@@ -1,3 +1,5 @@
+import { formatDistanceToNow } from "date-fns";
+
 class Utils {
 
 	/**
@@ -211,6 +213,15 @@ class Utils {
 		}
 		return breakpoints
 	}
+
+	static formatTimeToNow(time) {
+		return (
+		  time &&
+		  formatDistanceToNow(new Date(time), {
+			addSuffix: true,
+		  })
+		);
+	  }
 }
 
 export default Utils;

@@ -1,23 +1,43 @@
-import React, {useState} from 'react'
-import { Steps, Tabs, Card } from 'antd';
+import React, {useState, useEffect} from 'react'
+import {Link} from 'react-router-dom';
+import { Steps, Tabs, Card, message } from 'antd';
 import PendingChanges from '@amp-components/VersionControl/PendingChanges';
-import { Radio, Row} from 'antd';
-import { AppstoreOutlined, UnorderedListOutlined } from '@ant-design/icons';
+import { Radio, Row, Timeline, Col, Spin, Tag, Typography} from 'antd';
+import { AppstoreOutlined, UnorderedListOutlined, CaretUpOutlined, ClockCircleOutlined } from '@ant-design/icons';
 import { getLSCurrentApplication } from "@hooks/useApplicationSelector";
+import { APP_PREFIX_PATH } from 'configs/AppConfig';
+import useCommitList from "@hooks/useCommitList";
+import './Stage.scss';
+import utils from 'utils';
+
 
 const VIEW_LIST = 'LIST';
 const VIEW_GRID = 'GRID';
 
 const { Step } = Steps;
 const { TabPane } = Tabs;
+const { Text } = Typography;
 
 const Stage = () => {
 	const [view, setView] = useState(VIEW_GRID);
 	const applicationId = getLSCurrentApplication();
 
+	const {
+		data,
+		loading,
+		error,
+		errorMessage,
+	} = useCommitList();
+
 	const onChangeProjectView = e => {
 		setView(e.target.value)
 	}
+
+	useEffect(() => {
+	if(error){
+		message.error(errorMessage);
+	}
+	}, [error, errorMessage]);
 
 	return (
 		<div>
@@ -37,8 +57,9 @@ const Stage = () => {
 								
 							]
 						}
+						className="ant-with-height"
 					>
-						<div className='my-4 container container-fluid'>
+						<div className='my-4 container container-fluid stage-content'>
 							<PendingChanges applicationId={applicationId} />
 						</div>
 					</Card>
@@ -65,8 +86,9 @@ const Stage = () => {
 									</div>
 								]
 							}
+						className="ant-with-height"
 						>
-							<div className='my-4 container-fluid'>
+							<div className='container-fluid stage-content'>
 							{
 								view === VIEW_LIST ?
 								(
@@ -95,9 +117,38 @@ const Stage = () => {
 								</div>
 							]
 						}
+						className="ant-with-height"
 					>
-						<div className='my-4 container container-fluid'>
-							This is a content
+						<div className='my-4 container stage-content'>
+							<Row>
+								<Col span={22}>
+								<Timeline mode="alternate">
+								{loading && <Spin />}
+									<Timeline.Item 
+										color="blue" 
+										dot={<CaretUpOutlined 
+										style={{ fontSize: '22px' }} 
+									/>}>Most recent commit
+									</Timeline.Item>
+									{data?.commits.map((commit) => (
+										<Timeline.Item 
+											key={commit.id} 
+											color="blue">
+												<p>
+													<Link to={`${APP_PREFIX_PATH}/version/commits/${commit.id}`} ><Tag color="volcano">{commit.id}</Tag></Link>
+												</p>
+												<p>
+													<Tag  color="geekblue"><ClockCircleOutlined /><span>by {commit.user?.account?.firstName} </span> {utils.formatTimeToNow(commit.createdAt)}</Tag>
+												</p>
+												<p className="container p-2">
+													<Text type="secondary">{commit.message?commit.message:'No Commit Message'}</Text>
+												</p>
+												
+										</Timeline.Item>
+									))}
+									</Timeline>
+								</Col>
+							</Row>
 						</div>
 					</Card>
 				</TabPane>

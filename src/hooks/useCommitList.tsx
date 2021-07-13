@@ -1,27 +1,27 @@
 import { useState, useEffect, useCallback } from "react";
-import { match } from "react-router-dom";
 import { gql, useQuery } from "@apollo/client";
 
 import { formatError } from "util/error";
 import * as models from "models";
+import {getLSCurrentApplication} from "@hooks/useApplicationSelector";
 
 type TData = {
   commits: models.Commit[];
-};
-
-export type Props = {
-  match: match<{ application: string }>;
 };
 
 const CREATED_AT_FIELD = "createdAt";
 
 const POLL_INTERVAL = 10000;
 
-const useCommitList = ({ match }: Props) => {
-  const { application } = match.params;
+const useCommitList = () => {
+  const application = getLSCurrentApplication();
 
   const [searchPhrase, setSearchPhrase] = useState<string>("");
 
+  useEffect(() => {
+    setSearchPhrase("");
+  }, []);
+  
   const handleSearchChange = useCallback(
     (value) => {
       setSearchPhrase(value);

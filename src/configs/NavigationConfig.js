@@ -180,7 +180,7 @@ const versionControlNavTree = [{
     },
     {
       key: 'version-control-commits',
-      path: `${APP_PREFIX_PATH}/version/commits`,
+      path: `${APP_PREFIX_PATH}/version/commits/version`,
       title: 'sidenav.version.commit',
       icon: SubnodeOutlined,
       breadcrumb: true,
