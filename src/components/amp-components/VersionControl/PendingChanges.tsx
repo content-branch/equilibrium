@@ -6,7 +6,6 @@ import Commit from "@amp-components/VersionControl/Commit";
 import usePendingChanges, { Props } from "@hooks/usePendingChanges";
 import { SmileOutlined, BranchesOutlined } from "@ant-design/icons";
 import Flex from 'components/shared-components/Flex';
-import "./PendingChanges.scss";
 
 const CLASS_NAME = "pending-changes";
 
@@ -62,7 +61,6 @@ const PendingChanges = ({ applicationId }: Props) => {
                           <PendingChange
                             key={item.resourceId}
                             change={item}
-                            applicationId={applicationId}
                             linkToResource={false}
                           />
                         </List.Item>

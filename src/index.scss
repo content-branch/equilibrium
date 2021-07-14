@@ -61,7 +61,7 @@ div[tabindex="-1"]:focus {
 }
 
 ::-webkit-scrollbar {
-  width: var(--default-spacing);
+  width: 1px;
 }
 ::-webkit-scrollbar-button {
   background-color: var(--black10);
@@ -86,4 +86,17 @@ div[tabindex="-1"]:focus {
 
 div.mdc-top-app-bar--fixed-adjust {
   padding-top: var(--mdc-top-bar-adjust);
+}
+
+div.ant-layout-sider-children>div>*{
+  overflow-x: hidden!important;
+  overflow-y: scroll!important;
+  ::-webkit-scrollbar {
+    width: 1px;
+  }
+}
+
+.logo img{
+  position: relative;
+  left: 8px;
 }

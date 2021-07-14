@@ -15,7 +15,7 @@ export const SideNav = ({navCollapsed, sideNavTheme, routeInfo, hideGroupTitle, 
       width={SIDE_NAV_WIDTH} 
       collapsed={navCollapsed}
     >
-      <Scrollbars autoHide>
+      <Scrollbars autoHide renderThumbHorizontal={() => <div className="no-scroll"></div>}>
         <MenuContent 
           type={NAV_TYPE_SIDE} 
           {...props}

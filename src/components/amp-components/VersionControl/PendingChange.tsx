@@ -5,7 +5,6 @@ import Flex from 'components/shared-components/Flex';
 
 type Props = {
   change: models.PendingChange;
-  applicationId: string;
   linkToResource?: boolean;
 };
 
@@ -19,7 +18,6 @@ const ACTION_TO_LABEL: {
 
 const PendingChange = ({
   change,
-  applicationId,
   linkToResource = false,
 }: Props) => {
   return (

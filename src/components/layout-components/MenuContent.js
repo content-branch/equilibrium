@@ -69,7 +69,8 @@ const SideNavContent = (props) => {
       defaultSelectedKeys={[routeInfo?.key]}
       defaultOpenKeys={setDefaultOpen(routeInfo?.key)}
       selectedKeys={selectedKeys}
-      className={hideGroupTitle ? "hide-group-title" : ""}
+      className={hideGroupTitle ? "hide-group-title pt-3" : "pt-3"}
+      
     >
       {navigationConfig.map((menu) =>
         menu.submenu.length > 0 ? (

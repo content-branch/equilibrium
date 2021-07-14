@@ -3,23 +3,21 @@ import {Link} from 'react-router-dom';
 import { Steps, Tabs, Card, message } from 'antd';
 import PendingChanges from '@amp-components/VersionControl/PendingChanges';
 import { Radio, Row, Timeline, Col, Spin, Tag, Typography} from 'antd';
-import { AppstoreOutlined, UnorderedListOutlined, CaretUpOutlined, ClockCircleOutlined } from '@ant-design/icons';
+import { CaretUpOutlined, ClockCircleOutlined, DiffFilled, SplitCellsOutlined  } from '@ant-design/icons';
 import { getLSCurrentApplication } from "@hooks/useApplicationSelector";
 import { APP_PREFIX_PATH } from 'configs/AppConfig';
 import useCommitList from "@hooks/useCommitList";
 import './Stage.scss';
 import utils from 'utils';
+import PendingChangeCompareList from '@amp-components/VersionControl/PendingChangeCompareList';
 
-
-const VIEW_LIST = 'LIST';
-const VIEW_GRID = 'GRID';
 
 const { Step } = Steps;
 const { TabPane } = Tabs;
 const { Text } = Typography;
 
 const Stage = () => {
-	const [view, setView] = useState(VIEW_GRID);
+	const [view, setView] = useState(false);
 	const applicationId = getLSCurrentApplication();
 
 	const {
@@ -69,9 +67,9 @@ const Stage = () => {
 					<Card
 							title={
 								<div>
-									<Radio.Group defaultValue={VIEW_GRID} onChange={e => onChangeProjectView(e)}>
-										<Radio.Button value={VIEW_GRID}><AppstoreOutlined /></Radio.Button>
-										<Radio.Button value={VIEW_LIST}><UnorderedListOutlined /></Radio.Button>
+									<Radio.Group defaultValue={false} onChange={e => onChangeProjectView(e)}>
+										<Radio.Button value={false}><DiffFilled /></Radio.Button>
+										<Radio.Button value={true}><SplitCellsOutlined /></Radio.Button>
 									</Radio.Group>
 								</div>
 							}
@@ -90,15 +88,7 @@ const Stage = () => {
 						>
 							<div className='container-fluid stage-content'>
 							{
-								view === VIEW_LIST ?
-								(
-									<Row>
-										List view
-									</Row>
-								):
-								<Row>
-									Grid view
-								</Row>
+								<PendingChangeCompareList applicationId={applicationId} splitView={view} />
 							}
 							</div>
 					</Card>

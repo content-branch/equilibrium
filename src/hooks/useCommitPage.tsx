@@ -1,42 +1,10 @@
-import { useMemo, useCallback, useState } from "react";
-import { match } from "react-router-dom";
 import { gql, useQuery } from "@apollo/client";
 import * as models from "models";
 import { formatError } from "util/error";
-import useNavigationTabs from "@hooks/useNavigationTabs";
-import { truncateId } from "util/truncatedId";
 
-export type Props = {
-  match: match<{ application: string; commitId: string }>;
-};
+const useCommitPage = ({ commitId }: any) => {
 
-const NAVIGATION_KEY = "COMMITS";
-
-const SPLIT = "Split";
-
-const useCommitPage = ({ match }: Props) => {
-  const { application, commitId } = match.params;
-  const [splitView, setSplitView] = useState<boolean>(false);
-
-  const handleChangeType = useCallback(
-    (type: string) => {
-      setSplitView(type === SPLIT);
-    },
-    [setSplitView]
-  );
-
-  const truncatedId = useMemo(() => {
-    return truncateId(commitId);
-  }, [commitId]);
-
-  useNavigationTabs(
-    application,
-    `${NAVIGATION_KEY}_${commitId}`,
-    match.url,
-    `Commit ${truncatedId}`
-  );
-
-  const { data, error } = useQuery<{
+  const { data, loading, error } = useQuery<{
     commit: models.Commit;
   }>(GET_COMMIT, {
     variables: {
@@ -53,12 +21,10 @@ const useCommitPage = ({ match }: Props) => {
 
   const result = {
     data,
+    loading,
     build,
-    application,
-    splitView,
     error,
     errorMessage,
-    handleChangeType
   };
 
   return result;
