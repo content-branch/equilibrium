@@ -8,6 +8,7 @@ export type Props = {
   action?: models.Action;
   title: string;
   versionNumber: string;
+  commitId?:string;
 };
 const SECOND_STRING = "s";
 
@@ -25,7 +26,7 @@ const LOG_LEVEL_TO_CHALK: {
   [models.EnumActionLogLevel.Warning]: "yellow",
 };
 
-const useActionLog = ({ action, title, versionNumber }: Props) => {
+const useActionLog = ({ action, title, versionNumber, commitId }: Props) => {
   const logData = useMemo(() => {
     if (!action?.steps) return [];
 

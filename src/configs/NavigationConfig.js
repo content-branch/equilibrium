@@ -16,7 +16,7 @@ import {
   EyeOutlined,
   ApiOutlined,
   CodeSandboxOutlined,
-  DeploymentUnitOutlined,
+  RocketOutlined,
   BlockOutlined,
   HeatMapOutlined,
   UnlockOutlined,
@@ -77,7 +77,7 @@ const appNavTree = [{
       key: 'applications-app-deploy',
       path: `${APP_PREFIX_PATH}/applications/deploy`,
       title: 'sidenav.apps.deploy',
-      icon: DeploymentUnitOutlined,
+      icon: RocketOutlined,
       breadcrumb: true,
       submenu: []
     }
@@ -196,7 +196,7 @@ const versionControlNavTree = [{
     },
     {
       key: 'version-control-build-status-pipeline',
-      path: `${APP_PREFIX_PATH}/version/build-status`,
+      path: `${APP_PREFIX_PATH}/version/build-status/version`,
       title: 'sidenav.version.build',
       icon: BuildOutlined,
       breadcrumb: true,

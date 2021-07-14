@@ -69,7 +69,7 @@ const CommitCompareList = ({  commitId,
           <Empty 
             description={
                 <span>
-                    No file changed on this commit
+                    No file changed on this commit. <p>This is an automated generated commit from build pipeline</p>
                 </span>
             }
         />
