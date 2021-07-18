@@ -27,6 +27,7 @@ const useDeleteApiToken = ({ apiToken, onDelete, onError }: Props) => {
   );
 
   const handleDelete = useCallback(
+    
     (event) => {
       event.stopPropagation();
       setConfirmDelete(true);
