@@ -74,7 +74,7 @@
   padding: calc(var(--default-spacing) / 2) var(--default-spacing);
   background-color: var(--white);
   border: $border-black20;
-  border-radius: var(--form-elements-border-radius);
+  /*border-radius: var(--form-elements-border-radius);*/
   width: 100%;
   box-sizing: border-box;
   color: var(--black80);
@@ -190,12 +190,12 @@ $bullet-size: 6px;
 
   &::-webkit-scrollbar-thumb {
     background: $foreground-color;
-    border-radius: $size / 2;
+    // border-radius: $size / 2;
   }
 
   &::-webkit-scrollbar-track {
     background: $background-color;
-    border-radius: $size / 2;
+    // border-radius: $size / 2;
     margin: 5px;
   }
 

@@ -112,7 +112,6 @@ function useApplicationLayout() {
   const setCommitRunningCallback = useCallback(
     
     (isRunning: boolean) => {
-      console.log("Tonga ato ve");
       setCommitRunning(isRunning);
     },
     [setCommitRunning]

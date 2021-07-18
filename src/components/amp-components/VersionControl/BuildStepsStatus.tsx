@@ -1,6 +1,6 @@
 import React from "react";
 import { Spin } from 'antd';
-import { LoadingOutlined, CheckCircleTwoTone, WarningTwoTone, PlayCircleTwoTone } from '@ant-design/icons';
+import { LoadingOutlined, CheckCircleTwoTone, WarningTwoTone, FieldTimeOutlined } from '@ant-design/icons';
 import * as models from "models";
 import { STEP_STATUS_TO_ICON } from "./constants";
 import "./BuildStepStatus.scss";
@@ -22,7 +22,7 @@ const BuildStatusIcon = ({status}: Props) => {
     case 'close':
       return <WarningTwoTone twoToneColor="#ffcc00"/>;
     case 'circle_loader':
-      return <PlayCircleTwoTone />;
+      return <FieldTimeOutlined />;
     default:
       return <></>;
   }

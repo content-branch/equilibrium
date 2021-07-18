@@ -4,11 +4,12 @@ import { formatError } from "util/error";
 import * as models from "models";
 
 export type Props = {
-  applicationId: string;
-  onCompleted: () => void;
+  app: models.App;
+  isAuthenticatedWithGithub?:boolean;
 };
 
-function useGithubRepos({ applicationId, onCompleted }: Props) {
+function useGithubRepos({ app }: Props) {
+  const applicationId= app.id;
   const { data, error, loading, refetch, networkStatus } = useQuery<{
     appAvailableGithubRepos: models.GithubRepo[];
   }>(FIND_GITHUB_REPOS, {
@@ -22,7 +23,7 @@ function useGithubRepos({ applicationId, onCompleted }: Props) {
     models.App
   >(ENABLE_SYNC_WITH_GITHUB, {
     onCompleted: () => {
-      onCompleted();
+      //onCompleted();
     },
   });
 

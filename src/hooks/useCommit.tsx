@@ -47,7 +47,6 @@ const useCommit = ({ applicationId, noChanges }: Props) => {
 
   const handleSubmit = useCallback(
     (data, { resetForm }) => {
-      console.log("Mandeha ilay submit");
       pendingChangesContext.setCommitRunning(true);
       commit({
         variables: {

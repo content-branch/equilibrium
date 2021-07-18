@@ -11,6 +11,7 @@ import { track, dispatch, init as initAnalytics } from "./util/analytics";
 import * as reactHotkeys from "react-hotkeys";
 import { setContext } from "@apollo/client/link/context";
 import { getToken, setToken } from "./authentication/authentication";
+import AuthAppWithGithubCallback from "@amp-components/VersionControl/AuthAppWithGithubCallback";
 
 import {
   ApolloClient,
@@ -89,6 +90,11 @@ function App() {
               <Router>
                 <Switch>
                   <Route path="/" component={Views}/>
+                  <Route
+                    exact
+                    path="/github-auth-app/callback/:application"
+                    component={AuthAppWithGithubCallback}
+                  />
                 </Switch>
               </Router>
             </ThemeSwitcherProvider>

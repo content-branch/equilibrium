@@ -4,6 +4,7 @@ import * as models from "models";
 export type Props = {
   repo: models.GithubRepo;
   onSelectRepo: (repo: models.GithubRepo) => void;
+  isCurrentRepo?:boolean;
 };
 
 function useGithubRepoItem({ repo, onSelectRepo }: Props) {

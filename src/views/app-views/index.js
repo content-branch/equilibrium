@@ -5,7 +5,7 @@ import { APP_PREFIX_PATH } from 'configs/AppConfig';
 import PrivateRoute from "authentication/PrivateRoute";
 import PendingChangesContext from "@amp-components/VersionControl/PendingChangesContext";
 import useApplicationLayout from "@hooks/useApplicationLayout";
-
+import AuthAppWithGithubCallback from "@amp-components/VersionControl/AuthAppWithGithubCallback";
 
 export const AppViews = () => {
   
@@ -17,6 +17,11 @@ export const AppViews = () => {
     <PendingChangesContext.Provider value={pendingChangesContextValue}>
     <Suspense fallback={<Loading cover="content"/>}>
       <Switch>
+        <PrivateRoute
+          exact
+          path="/github-auth-app/callback/:application"
+          component={AuthAppWithGithubCallback}
+        />
         <PrivateRoute exact path={`${APP_PREFIX_PATH}/`}>
           <Redirect to={`${APP_PREFIX_PATH}/home`} />
         </PrivateRoute>

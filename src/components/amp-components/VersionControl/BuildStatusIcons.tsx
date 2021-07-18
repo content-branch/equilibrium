@@ -15,7 +15,7 @@ type BuildStatusIconsProps = {
   build: models.Build;
 };
 
-const DockerIcon = createFromIconfontCN({
+export const DockerIcon = createFromIconfontCN({
   scriptUrl: '//at.alicdn.com/t/font_2654793_etl4xgaf9r.js', // 在 iconfont.cn 上生成
 });
 

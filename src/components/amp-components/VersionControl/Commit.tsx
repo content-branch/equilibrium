@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useContext } from "react";
 import { message, Button, Card, Modal, notification } from "antd";
 import { Formik } from "formik";
 import { Form, Input } from "formik-antd";
@@ -6,8 +6,10 @@ import { GlobalHotKeys } from "react-hotkeys";
 import { CROSS_OS_CTRL_ENTER } from "util/hotkeys";
 // import CommitValidation from "./CommitValidation";
 import useCommit, { INITIAL_VALUES, Props } from "@hooks/useCommit";
-import { SaveOutlined, RestOutlined } from "@ant-design/icons";
+import { SaveOutlined, RestOutlined, CompassTwoTone} from "@ant-design/icons";
 import useDiscardChanges from "@hooks/useDiscardChanges";
+import PendingChangesContext from "@amp-components/VersionControl/PendingChangesContext";
+
 
 const CLASS_NAME = "commit";
 
@@ -26,6 +28,8 @@ const Commit = ({ applicationId, noChanges }: Props) => {
       formRef.current.handleSubmit()
     }
   }
+
+  const pendingChangesContext = useContext(PendingChangesContext);
 
   const onComplete = () => {
     notification.open({
@@ -103,11 +107,12 @@ const Commit = ({ applicationId, noChanges }: Props) => {
           </Button>,
           <Button
             type="primary"
-            disabled={loading}
+            disabled={loading || pendingChangesContext.commitRunning}
             size="small"
             onClick={handleFormSubmit}
-            icon={<SaveOutlined />}
+            icon={pendingChangesContext.commitRunning ? <CompassTwoTone spin/>:<SaveOutlined />}
           >
+            
             {noChanges ? "Rebuild" : "Commit & Build "}
           </Button>
           

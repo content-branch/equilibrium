@@ -43,7 +43,7 @@ $step-status-width: 15px;
   &__body {
     flex: 1;
     overflow: auto;
-    @include scrollbars($default-scroll-width, var(--black60), transparent);
+    // @include scrollbars($default-scroll-width, var(--black60), transparent);
     box-sizing: border-box;
   }
   &__step {

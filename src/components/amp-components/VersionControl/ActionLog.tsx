@@ -12,7 +12,7 @@ import "./ActionLog.scss";
 
 const { Text } = Typography;
 const CLASS_NAME = "action-log";
-const LOG_ROW_HEIGHT = 19;
+const LOG_ROW_HEIGHT = 20;
 
 export const BuildStatusIcon = (status: models.EnumActionStepStatus) => {
   switch(status){
@@ -107,7 +107,9 @@ const ActionLog = ({ action, title, versionNumber, commitId }: Props) => {
                   lineClassName={`${CLASS_NAME}__line`}
                   extraLines={0}
                   enableSearch={false}
+                  selectableLines={false}
                   text={stepData.messages}
+                  
                   height={10} //we use a random value in order to disable the auto-sizing, and use "height:auto !important" in CSS
                 />
               </div>

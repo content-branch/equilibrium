@@ -16,14 +16,12 @@ let triggerOnDone = () => {};
 let triggerAuthFailed = () => {};
 
 export type Props = {
-  app: models.App;
-  onDone: () => void;
+  app: models.App ;
+  onDone: () => void ;
 };
 
 function useAuthAppWithGithub({ app, onDone }: Props) {
-  const [selectRepoOpen, setSelectRepoOpen] = useState<boolean>(false);
   const [confirmRemove, setConfirmRemove] = useState<boolean>(false);
-  const [popupFailed, setPopupFailed] = useState(false);
   const { trackEvent } = useTracking();
 
   const [authWithGithub, { loading, error }] = useMutation<DType>(
@@ -50,23 +48,15 @@ function useAuthAppWithGithub({ app, onDone }: Props) {
     },
   });
 
-  const handleSelectRepoDialogDismiss = useCallback(() => {
-    setSelectRepoOpen(false);
-  }, []);
-
-  const handleSelectRepoDialogOpen = useCallback(() => {
-    setSelectRepoOpen(true);
-  }, []);
-
   const handleAuthWithGithubClick = useCallback(
     (data) => {
-      if (isEmpty(app.githubTokenCreatedDate)) {
+      if (isEmpty(app?.githubTokenCreatedDate)) {
         trackEvent({
           eventName: "startAuthAppWithGitHub",
         });
         authWithGithub({
           variables: {
-            appId: app.id,
+            appId: app?.id,
           },
         }).catch(console.error);
       } else {
@@ -92,20 +82,15 @@ function useAuthAppWithGithub({ app, onDone }: Props) {
     setConfirmRemove(false);
     removeAuthWithGithub({
       variables: {
-        appId: app.id,
+        appId: app?.id,
       },
     }).catch(console.error);
   }, [removeAuthWithGithub, app, trackEvent]);
-  const handlePopupFailedClose = () => {
-    MDCSwitchRef.current?.setChecked(false);
-    setPopupFailed(false);
-  };
+ 
   triggerOnDone = () => {
     onDone();
   };
-  triggerAuthFailed = () => {
-    setPopupFailed(true);
-  };
+  
   const errorMessage = formatError(error || removeError);
 
   const isAuthenticatedWithGithub = !isEmpty(app.githubTokenCreatedDate);
@@ -114,19 +99,14 @@ function useAuthAppWithGithub({ app, onDone }: Props) {
     loading,
     isAuthenticatedWithGithub,
     removeLoading,
-    selectRepoOpen,
     confirmRemove,
-    popupFailed,
     error,
     removeError,
     errorMessage,
     MDCSwitchRef,
     handleConfirmRemoveAuth,
     handleDismissRemove,
-    handlePopupFailedClose,
     handleAuthWithGithubClick,
-    handleSelectRepoDialogOpen,
-    handleSelectRepoDialogDismiss
   };
 
   return result;
