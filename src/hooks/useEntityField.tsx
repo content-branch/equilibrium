@@ -1,17 +1,14 @@
-import { useCallback, useMemo, useContext, useState } from "react";
-import { useRouteMatch, useHistory } from "react-router-dom";
+import { useCallback, useMemo, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { gql, useMutation, useQuery } from "@apollo/client";
-import { types } from "@amplication/data";
-
+import { types } from "@content-branch/equilibrium-data";
 import { formatError } from "util/error";
 import * as models from "models";
-import PendingChangesContext from "@amp-components/VersionControl/PendingChangesContext";
 
-import { useTracking } from "util/analytics";
-import { Values } from "./EntityFieldForm";
+import { Values } from "@amp-components/Entity/EntityFieldForm";
 import {
   Values as RelatedFieldValues,
-} from "./RelatedFieldDialog";
+} from "@hooks/useRelatedFieldDialog";
 
 type TData = {
   entity: models.Entity;
@@ -21,22 +18,22 @@ type UpdateData = {
   updateEntityField: models.EntityField;
 };
 
-const useEntityField = () => {
-  const { trackEvent } = useTracking();
+export type Props = {
+  applicationId: string | undefined;
+  entityId:string | undefined;
+  fieldId:string | undefined;
+};
+
+const useEntityField = ({applicationId, entityId, fieldId}:Props) => {
   const [lookupPendingData, setLookupPendingData] = useState<Values | null>(
     null
   );
-  const pendingChangesContext = useContext(PendingChangesContext);
   const history = useHistory();
   const [error, setError] = useState<Error>();
 
-  const match = useRouteMatch<{
-    application: string;
-    entity: string;
-    field: string;
-  }>("/:application/entities/:entity/fields/:field");
-
-  const { application, entity, field } = match?.params ?? {};
+  const application = applicationId || '';
+  const entity = entityId || '';
+  const field = fieldId || '';
 
   if (!application) {
     throw new Error("application parameters is required in the query string");
@@ -75,22 +72,20 @@ const useEntityField = () => {
         }
       },
       onCompleted: (data) => {
-        pendingChangesContext.addEntity(entity);
-        trackEvent({
-          eventName: "updateEntityField",
-          entityFieldName: data.updateEntityField.displayName,
-          dataType: data.updateEntityField.dataType,
-        });
+        setTimeout(()=>{
+          //pendingChangesContext.addEntity(entity);
+        }, 0)
       },
     }
   );
 
   const handleDeleteField = useCallback(() => {
-    history.push(`/${application}/entities/${entity}/fields/`);
+   // history.push(`/${application}/entities/${entity}/fields/`);
+   console.log(application, entity, history);
   }, [history, application, entity]);
 
   const handleSubmit = useCallback(
-    (data) => {
+    ( data) => {
       if (data.dataType === models.EnumDataType.Lookup) {
         const properties = data.properties as types.Lookup;
         if (

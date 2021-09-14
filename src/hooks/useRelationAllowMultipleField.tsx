@@ -15,7 +15,7 @@ const useRelationAllowMultiple = ({fieldName}: any) => {
 
   const handleChange = useCallback(
     (event) => {
-      const selectedValue = event.currentTarget.value === "true";
+      const selectedValue = event?.target?.value;
       formik.setFieldValue(fieldName, selectedValue, false);
     },
     [formik, fieldName]

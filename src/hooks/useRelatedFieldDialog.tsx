@@ -1,7 +1,4 @@
 import { gql, useQuery } from "@apollo/client";
-import {
-  DialogProps,
-} from "@amplication/design-system";
 import { camelCase } from "camel-case";
 import * as models from "models";
 
@@ -10,7 +7,7 @@ export type Values = {
   relatedFieldDisplayName: string;
 };
 
-export type Props = Omit<DialogProps, "title"> & {
+export type Props = Omit<any, "title"> & {
   onSubmit: (data: Values) => void;
   relatedEntityId: string | undefined;
   allowMultipleSelection: boolean;

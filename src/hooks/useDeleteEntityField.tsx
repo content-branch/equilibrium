@@ -8,11 +8,11 @@ type DType = {
 };
 
 export type Props = {
-  entityId: string;
-  entityField: models.EntityField;
+  entityId?: string;
+  entityField?: models.EntityField;
   showLabel?: boolean;
   onDelete?: () => void;
-  onError: (error: Error) => void;
+  onError?: (error: Error) => void;
 };
 
 const useDeleteEntityField = ({

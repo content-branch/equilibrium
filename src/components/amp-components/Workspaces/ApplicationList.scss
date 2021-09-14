@@ -32,3 +32,9 @@ $empty-state-image-size: 120px;
     }
   }
 }
+
+
+.app-content  {
+  height:50vh;
+  overflow-y: scroll;
+}

@@ -1,0 +1,8 @@
+@import "style/index.scss";
+
+.inline {
+  display: flex;
+}
+.inline > * {
+  display: flex;
+}

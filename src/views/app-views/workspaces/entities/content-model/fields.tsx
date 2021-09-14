@@ -1,164 +1,20 @@
-import React, { useEffect, useMemo } from 'react';
-import { Table, Tag, PageHeader, message, Divider, Avatar} from 'antd';
-import Icon from '@components/util-components/Icon';
-import {    TagTwoTone , 
-            EditOutlined,
-            DeleteOutlined,
-            TeamOutlined,
-            UserOutlined,
-            UnlockOutlined,
-            ClockCircleOutlined,
-            FontSizeOutlined,
-            AlignLeftOutlined,
-            CalendarOutlined,
-            FieldBinaryOutlined,
-            NumberOutlined,
-            LinkOutlined,
-            MailOutlined,
-            BarcodeOutlined,
-            EnvironmentOutlined,
-            CheckSquareOutlined,
-            HistoryOutlined,
-            TableOutlined,
-            TagOutlined,
-            TagsOutlined,
-            FlagOutlined
-    } from '@ant-design/icons';
+import React, { useEffect, useMemo, useState } from 'react';
+import { Table, PageHeader, message , Drawer } from 'antd';
+import { TagTwoTone } from '@ant-design/icons';
 import useEntityFieldList from "@hooks/useEntityFieldList";
 import { DATA_TYPE_TO_LABEL_AND_ICON } from "@amp-components/Entity/constants";
-
-const createTypeIcon = (field:any) => {
-    switch(field.icon){
-        case "type": return (
-            FontSizeOutlined
-        );
-        case "multiline_text": return (
-            AlignLeftOutlined 
-        );
-        case "at_sign": return (
-            MailOutlined
-        );
-        case "bookmark": return (
-            FieldBinaryOutlined
-        );
-        case "decimal_number": return (
-            NumberOutlined 
-        );
-        case "calendar": return (
-            CalendarOutlined
-        );
-        case "lookup": return (
-            LinkOutlined 
-        );
-        case "check_square": return (
-            CheckSquareOutlined
-        );
-        case "code1": return (
-            FlagOutlined
-        );
-        case "option_set": return (
-            TagOutlined
-        );
-        case "multi_select_option_set": return (
-            TagsOutlined
-        );
-        case "map_pin": return (
-            EnvironmentOutlined
-        );
-        case "created_at": return (
-            ClockCircleOutlined
-        );
-        case "updated_at": return (
-            HistoryOutlined
-        );
-        case "id": return (
-            BarcodeOutlined
-        );
-        case "user": return (
-            UserOutlined
-        );
-        case "lock": return (
-            UnlockOutlined
-        );
-        case "users": return (
-            TeamOutlined 
-        );
-        default: return (
-            TableOutlined               
-        );
-    }
-}
-
-const getIcon = (field:any) => {
-    return (
-        <>
-            <Avatar shape="square" style={{
-                background: `${field.color}`
-            }} icon={ <Icon className="h4 text-white" type={createTypeIcon(field)} />} />
-        </>
-    );
-}
-
-const getTags = (tags:[]) => {
-    return (
-        <span>
-            {tags.map((tag:any) => {
-            
-            let color = tag === 'required' ? 'magenta' : 'geekblue';
-            
-            return (
-                <Tag color={color} key={tag}>
-                    {tag.toUpperCase()}
-                </Tag>
-            );
-            })}
-        </span>
-    );
-}
-
-const columns = [
-{
-    title: 'Icon',
-    dataIndex: 'icon',
-    key: 'icon',
-    render: (icon:any) => getIcon(icon),
-},
-{
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
-},
-{
-    title: 'Type',
-    dataIndex: 'type',
-    key: 'type',
-    render: (type:any) => <b>{type.label}</b>
-},
-{
-    title: 'Tags',
-    key: 'tags',
-    dataIndex: 'tags',
-    render: (tags:any) => getTags(tags),
-},
-{
-    title: 'Description',
-    dataIndex: 'description',
-    key: 'description',
-},
-{
-    title: 'Action',
-    key: 'action',
-    render: (text:any, record:any) => (
-    <span>
-        <EditOutlined />
-        <Divider type="vertical" />
-        <DeleteOutlined />
-    </span>
-    ),
-},
-];
+import EntityField from "@amp-components/Entity/EntityField";
+import { getTags } from "@amp-components/Entity/EntityFieldForm";
+import './Fields.scss';
+import {getIcon} from "@amp-components/Entity/DataTypeSelectField";
+// import PendingChangesContext from "@amp-components/VersionControl/PendingChangesContext";
 
 const Fields = ({entityId}:any) => {
+
+    const [visible, setVisible] = useState(false);
+    const [currentField, setCurrentField] = useState("");
+    // const pendingChangesContext = useContext(PendingChangesContext);
+
     const {
         data,
         loading,
@@ -168,7 +24,52 @@ const Fields = ({entityId}:any) => {
         // setError,
     } = useEntityFieldList({ entityId });
 
-    const getTags = (field:any) => {
+    
+
+    const columns = [
+        {
+            title: 'Icon',
+            dataIndex: 'icon',
+            key: 'icon',
+            render: (icon:any) => getIcon(icon),
+        },
+        {
+            title: 'Name',
+            dataIndex: 'name',
+            key: 'name',
+        },
+        {
+            title: 'Type',
+            dataIndex: 'type',
+            key: 'type',
+            render: (type:any) => <b>{type.label}</b>
+        },
+        {
+            title: 'Tags',
+            key: 'tags',
+            dataIndex: 'tags',
+            render: (tags:any) => getTags(tags),
+        },
+        {
+            title: 'Description',
+            dataIndex: 'description',
+            key: 'description',
+        },
+        // {
+        //     title: 'Action',
+        //     key: 'action',
+        //     render: ({action}:any) => (
+        //     <span>
+        //         {/* <EditTwoTone  onClick={()=>{
+        //             setCurrentField(action);
+        //             setVisible(true)}
+        //         }/> */}
+        //     </span>
+        //     ),
+        // },
+        ];
+
+    const getSimpleTags = (field:any) => {
         const result = [];
         if(field.required)
           result.push('required');
@@ -189,7 +90,8 @@ const Fields = ({entityId}:any) => {
                 'type':           DATA_TYPE_TO_LABEL_AND_ICON[field.dataType],
                 'name':           field.displayName,
                 'description':    field.description,
-                'tags':           getTags(field)
+                'tags':           getSimpleTags(field),
+                'action':         field.id
             }
         });
 
@@ -205,7 +107,22 @@ const Fields = ({entityId}:any) => {
         if(error){
             message.error(errorMessage);
         }
-    }, [error, errorMessage]);    
+    }, [error, errorMessage]);  
+    
+    useEffect(() => {
+        setVisible(false);
+    }, []); 
+
+    const onClose = () => {
+        //pendingChangesContext.addEntity(entityId);
+        setVisible(false);
+    };
+
+    useEffect(() => { 
+        if(!visible){
+            setCurrentField("");
+        }
+    }, [visible, setCurrentField])
 
 	return (
         <>
@@ -222,7 +139,38 @@ const Fields = ({entityId}:any) => {
                 columns={columns}
                 tableLayout="auto"
                 dataSource={dynamicData}
+                onRow={(record, rowIndex) => {
+                    return {
+                        onClick: event => {
+                            setCurrentField(record.action);
+                            setVisible(true);
+                          //console.log("Record contains", record);
+                        }, // click row
+                        onDoubleClick: event => {}, // double click row
+                        onContextMenu: event => {}, // right button click row
+                        onMouseEnter: event => {
+
+                        }, // mouse enter row
+                        onMouseLeave: event => {}, // mouse leave row
+                    };
+                }}
+                style={{
+                    cursor:"pointer"
+                }}
+                rowClassName={(record, index) => record.action === currentField ? "row-active":""}
             />
+            <Drawer
+                width={640}
+                placement="left"
+                closable={false}
+                onClose={onClose}
+                visible={visible}
+                title={<h3 className=""><TagTwoTone twoToneColor="magenta"/> Field Settings </h3>}
+            >
+                <>
+                    <EntityField applicationId={data?.entity.appId} entityId={data?.entity.id} fieldId={currentField} />
+                </>
+            </Drawer>
         </>
 	)
 }
