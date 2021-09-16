@@ -1,11 +1,11 @@
 import React from "react";
 import classNames from "classnames";
 import WorkspaceSelectorList from "@amp-components/Workspaces/WorkspaceSelectorList";
+import NewWorkspace from "@amp-components/Workspaces/NewWorkspace";
 import useWorkspaceSelector from "@hooks/useWorkspaceSelector";
-import { Spin, Button } from "antd";
+import { Spin, Button, Modal } from "antd";
 import { SwitcherOutlined } from '@ant-design/icons';
 import "./WorkspaceSelector.scss";
-
 
 export const COLOR = "#A787FF";
 const CLASS_NAME = "workspaces-selector";
@@ -16,6 +16,7 @@ function WorkspaceSelector() {
     loading,
     isOpen,
     data,
+    newWorkspace,
     handleNewWorkspaceClick,
     handleSetCurrentWorkspace,
     handleOpen
@@ -23,14 +24,17 @@ function WorkspaceSelector() {
 
   return (
     <div className={CLASS_NAME}>
-      {/* <Dialog
-        className="new-entity-dialog"
-        isOpen={newWorkspace}
-        onDismiss={handleNewWorkspaceClick}
-        title="New Workspace"
-      >
-        <NewWorkspace onWorkspaceCreated={handleSetCurrentWorkspace} />
-      </Dialog> */}
+      <div>
+        <Modal
+          title="New Workspace"
+          visible={newWorkspace}
+          footer={<></>}
+          width={600}
+          onCancel={handleNewWorkspaceClick}
+        >
+          <NewWorkspace onWorkspaceCreated={handleSetCurrentWorkspace} />
+        </Modal>
+      </div>
       <div
         className={classNames(`${CLASS_NAME}__current`, {
           [`${CLASS_NAME}__current--active`]: isOpen,
@@ -41,7 +45,6 @@ function WorkspaceSelector() {
           <Spin />
         ) : (
           <>
-            
             <span className={`${CLASS_NAME}__current__name`}>
               {data?.currentWorkspace.name}
             </span>

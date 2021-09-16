@@ -29,6 +29,7 @@ function useWorkspaceSelector() {
   const handleSetCurrentWorkspace = useCallback(
     (workspace: models.Workspace) => {
       setIsOpen(false);
+      console.log('Tonga eto ');
       localStorage.removeItem(CURRENT_APPLICATION);
       setCurrentWorkspace({
         variables: {
