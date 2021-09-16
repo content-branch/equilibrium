@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Table, PageHeader, message , Drawer } from 'antd';
+import { Table, PageHeader, message , Drawer} from 'antd';
 import { TagTwoTone } from '@ant-design/icons';
 import useEntityFieldList from "@hooks/useEntityFieldList";
 import { DATA_TYPE_TO_LABEL_AND_ICON } from "@amp-components/Entity/constants";
@@ -7,7 +7,6 @@ import EntityField from "@amp-components/Entity/EntityField";
 import { getTags } from "@amp-components/Entity/EntityFieldForm";
 import './Fields.scss';
 import {getIcon} from "@amp-components/Entity/DataTypeSelectField";
-// import PendingChangesContext from "@amp-components/VersionControl/PendingChangesContext";
 
 const Fields = ({entityId}:any) => {
 
@@ -159,6 +158,7 @@ const Fields = ({entityId}:any) => {
                 }}
                 rowClassName={(record, index) => record.action === currentField ? "row-active":""}
             />
+           
             <Drawer
                 width={640}
                 placement="left"
@@ -171,6 +171,8 @@ const Fields = ({entityId}:any) => {
                     <EntityField applicationId={data?.entity.appId} entityId={data?.entity.id} fieldId={currentField} />
                 </>
             </Drawer>
+
+            
         </>
 	)
 }

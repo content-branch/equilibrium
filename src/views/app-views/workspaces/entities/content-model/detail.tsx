@@ -8,6 +8,8 @@ import Permission from './permission';
 import Fields from './fields';
 import { SettingTwoTone } from '@ant-design/icons';
 import './Fields.scss';
+import NewEntityField from "@amp-components/Entity/NewEntityField";
+
 
 const Detail = ({ match }: any) => {
 	const { entityId } = match.params;
@@ -51,6 +53,14 @@ const Detail = ({ match }: any) => {
 				entity ?
 				(
 					<>
+						 <Row justify="start">
+							 <Col className="new">
+								{data?.entity && (
+									<NewEntityField entity={entity} />
+								)}
+							</Col>
+						</Row>
+
 						<Row className={`fields-section`}>
 							<Fields entityId={ entity?.id }/>
 						</Row>
