@@ -8,6 +8,7 @@ import { SvgThemeImage, EnumImages } from "@amp-components/Components/SvgThemeIm
 import { AppstoreAddOutlined } from '@ant-design/icons';
 import ApplicationListItem from "@amp-components/Workspaces/ApplicationListItem";
 import useApplicationList from "@hooks/useApplicationList";
+import { APP_PREFIX_PATH } from 'configs/AppConfig';
 import "./ApplicationList.scss";
 
 const CLASS_NAME = "application-list";
@@ -36,7 +37,7 @@ function ApplicationList() {
           <SearchInput onSearchResult={handleSearchChange}/>
         </Col>
         <Col span={2}>
-          <Link onClick={handleNewAppClick} to="/create-app">
+          <Link onClick={handleNewAppClick} to={`${APP_PREFIX_PATH}/applications/create-app`}>
             <Button
               className={`${CLASS_NAME}__add-button`}
               type="primary"

@@ -1,9 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import ApplicationSelectorListItem from "@amp-components/Application/ApplicationSelectorListItem";
 import { Spin, Card, Button} from "antd";
 import useApplicationList from "@hooks/useApplicationList";
 import { Props as ApplicationProps } from "@hooks/useApplicationListItem";
 import { AppstoreAddOutlined } from '@ant-design/icons';
+import { APP_PREFIX_PATH } from 'configs/AppConfig';
 
 
 const CLASS_NAME = "applications-selector__list";
@@ -32,14 +34,16 @@ function ApplicationSelectorList({
           title="Avalaible Applications"
           size="small"
           actions={[
-            <Button
-                className={`${CLASS_NAME}__add-button`}
-                type="primary"
-                disabled={loading}
-                icon={<AppstoreAddOutlined />}
-              >
-                Create new Application
-            </Button>
+            <Link to={`${APP_PREFIX_PATH}/applications/create-app`}>
+              <Button
+                  className={`${CLASS_NAME}__add-button`}
+                  type="primary"
+                  disabled={loading}
+                  icon={<AppstoreAddOutlined />}
+                >
+                  Create new Application
+              </Button>
+            </Link>
           ]}
          >
             {data?.apps.map((application) => (

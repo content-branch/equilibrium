@@ -13,7 +13,9 @@ import { useTracking } from "util/analytics";
 import { formatError } from "util/error";
 import { GET_APPLICATIONS } from "@hooks/useApplicationList";
 import { sampleAppWithEntities, sampleAppWithoutEntities } from "@components/amp-components/Application/constants";
+import { APP_PREFIX_PATH } from 'configs/AppConfig';
 
+export const CURRENT_APPLICATION = 'currentApplication';
 
 type ColumnKey = {
   name: string;
@@ -200,12 +202,19 @@ export default function useCreateAppFromExcel() {
     }).catch(console.error);
   }, [createAppWithEntities, trackEvent]);
 
+
+  const setLSCurrentApplication = (applicationId: string) => {
+    localStorage.setItem(CURRENT_APPLICATION, applicationId);
+  }
+
   useEffect(() => {
     if (data) {
       const appId = data.createAppWithEntities.id;
       //const buildId = data.createAppWithEntities.builds[0].id;
-
-      history.push(`/${appId}/entities`);
+      setLSCurrentApplication(appId);
+      history.replace(`${APP_PREFIX_PATH}/entities`);
+      window.location.reload();
+      // history.push(`${APP_PREFIX_PATH}/applications/overview${appId}/entities`);
     }
   }, [history, data]);
 

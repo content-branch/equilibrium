@@ -33,6 +33,7 @@ export const AppViews = () => {
         <PrivateRoute path={`${APP_PREFIX_PATH}/applications/integrations`}       component={lazy(() => import(`./workspaces/applications/integrations`))} />
         <PrivateRoute path={`${APP_PREFIX_PATH}/applications/sandbox`}            component={lazy(() => import(`./workspaces/applications/sandbox`))} />
         <PrivateRoute path={`${APP_PREFIX_PATH}/applications/deploy`}             component={lazy(() => import(`./workspaces/applications/deploy`))} />
+        <PrivateRoute path={`${APP_PREFIX_PATH}/applications/create-app`}         component={lazy(() => import(`./workspaces/applications/create-app`))} />
 
         <PrivateRoute path={`${APP_PREFIX_PATH}/entities/content-model`}          component={lazy(() => import(`./workspaces/entities/content-model`))} />
         <PrivateRoute path={`${APP_PREFIX_PATH}/entities/schemas-analysis`}       component={lazy(() => import(`./workspaces/entities/analysis`))} />
