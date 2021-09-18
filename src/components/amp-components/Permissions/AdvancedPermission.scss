@@ -1,0 +1,17 @@
+@import "style/index.scss";
+
+.operation-item{
+    padding-top:3px;
+    padding-bottom:3px;
+    & .operation-child{
+        margin-bottom:3px;
+        margin-top:4px;
+
+    }
+}
+
+
+.granular-item{
+    padding-top:3px;
+    padding-bottom:3px;
+}

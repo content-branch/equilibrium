@@ -3,13 +3,8 @@ import { Row, Col, Empty, Divider, PageHeader, Tag, message, Spin } from 'antd';
 import useEntityList from "@hooks/useEntityList";
 import useEntity from "@hooks/useEntity";
 import LockStatusIcon from "@amp-components/VersionControl/LockStatusIcon";
-import EntityForm from "@amp-components/Entity/EntityForm";
-import Permission from '@amp-components/Permissions/Permission';
-import Fields from './fields';
-import { SettingTwoTone } from '@ant-design/icons';
-import './Fields.scss';
-import NewEntityField from "@amp-components/Entity/NewEntityField";
-
+import AdvancedPermission from '@amp-components/Permissions/AdvancedPermission';
+import { SafetyCertificateTwoTone } from '@ant-design/icons'
 
 const Detail = ({ match }: any) => {
 	const { entityId } = match.params;
@@ -36,7 +31,7 @@ const Detail = ({ match }: any) => {
 			{loading && <Spin />}
 			<PageHeader
 				className="site-page-header"
-				title={<h1>{entity?.displayName}</h1>}
+				title={<h1> <SafetyCertificateTwoTone twoToneColor='#52c41a' /> Permissions for {entity?.displayName}</h1>}
 				subTitle={(
 					<Row align="middle" justify="end">
 						<Col span={24} >
@@ -53,31 +48,8 @@ const Detail = ({ match }: any) => {
 				entity ?
 				(
 					<>
-						 <Row justify="start">
-							 <Col className="new">
-								{data?.entity && (
-									<NewEntityField entity={entity} />
-								)}
-							</Col>
-						</Row>
-
-						<Row className={`fields-section`}>
-							<Fields entityId={ entity?.id }/>
-						</Row>
-						<Permission entityId={ entity?.id } isSource />
+						<AdvancedPermission />
 						<Divider />
-						<PageHeader
-							className="site-section-header"
-							title={<h3><SettingTwoTone  twoToneColor="#52c41a"/> General settings</h3>}
-						/>
-						<Row>
-							<EntityForm
-								entity={entity}
-								applicationId={application}
-								onSubmit={handleSubmit}
-							/>
-						</Row>
-						
 					</>
 				):
 				(
