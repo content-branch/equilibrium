@@ -1,0 +1,12 @@
+@import "style/index.scss";
+
+.main-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: grab;
+}
+
+.main-content:active{
+    cursor:grabbing;
+}
