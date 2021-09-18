@@ -1,0 +1,9 @@
+@import "style/index.scss";
+
+.main-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 1000vh;
+    width: 100%;
+}

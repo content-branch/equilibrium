@@ -1,0 +1,14 @@
+@import "style/index.scss";
+
+iframe{
+  border:0.5px solid;
+}
+.main-content{
+  height:82vh;
+  overflow-y:scroll;
+  overflow-x: hidden;
+  border:none;
+}
+::-webkit-scrollbar {
+  width: 1px;
+}
