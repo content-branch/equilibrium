@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useContext } from "react";
+import { useCallback, useMemo } from "react";
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { isEmpty, cloneDeep } from "lodash";
 import difference from "@extra-set/difference";
@@ -9,7 +9,6 @@ import * as permissionTypes from "@amp-components/Permissions/types";
 import { GET_ENTITY_PERMISSIONS } from "@hooks/usePermissionsForm";
 import { GET_ROLES } from "@hooks/useRoleList";
 
-import PendingChangesContext from "@amp-components/VersionControl/PendingChangesContext";
 import { getLSCurrentApplication } from "@hooks/useApplicationSelector";
 
 type TData = {
@@ -31,7 +30,6 @@ const useEntityPermissionAction = ({
 
   const applicationId = getLSCurrentApplication();
 
-  const pendingChangesContext = useContext(PendingChangesContext);
 
   const selectedRoleIds = useMemo((): Set<string> => {
     return new Set(permission.permissionRoles?.map((role) => role.appRoleId));
@@ -47,7 +45,7 @@ const useEntityPermissionAction = ({
   /**@todo: handle  errors */
   const [updateRole] = useMutation(UPDATE_ROLES, {
     onCompleted: (data) => {
-      pendingChangesContext.addEntity(entityId);
+      //pendingChangesContext.addEntity(entityId);
     },
     update(cache, { data: { updateEntityPermissionRoles } }) {
       const queryData = cache.readQuery<{

@@ -9,6 +9,7 @@ import usePermissionsForm from "@hooks/usePermissionsForm";
 import { ActionRoleListContainer } from "@amp-components/Permissions/ActionRoleListContainer";
 import { PermissionTypeContainer } from "@amp-components/Permissions/PermissionTypeContainer";
 import { EntityPermissionAction  } from "@amp-components/Permissions/EntityPermissionAction";
+import { PermissionFieldContainer } from "@amp-components/Permissions/PermissionFieldContainer";
 import './AdvancedPermission.scss';
 
 const { Text } = Typography;
@@ -95,12 +96,20 @@ const AdvancedPermission = ({entityId, isSource}:any) => {
 			<Divider />
 			<PageHeader
 				className="site-page-header"
-				title={<h2 className="mb-4"><AimOutlined /> Target Permissions</h2>}
+				title={<h2 className="mb-4"><AimOutlined /> Field Target Permissions</h2>}
 			/>
-			<Row>
-
-			</Row>
-			
+				{loading
+				? <Spin />
+				: ENTITY_ACTIONS.map((action) => (
+					<Row>
+						<PermissionFieldContainer 
+							key={action.action}
+							entityId={entityId}
+							permission={permissionsByAction[action.action]}
+							permissionAction={action}
+						/>
+					</Row>
+				))}
 		</>
 	);
 }

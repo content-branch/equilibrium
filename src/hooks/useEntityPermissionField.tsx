@@ -1,11 +1,10 @@
-import { useCallback, useMemo, useContext } from "react";
+import { useCallback, useMemo } from "react";
 import { gql, useMutation } from "@apollo/client";
 import difference from "@extra-set/difference";
 import { cloneDeep } from "lodash";
 
 import * as models from "models";
 import { GET_ENTITY_PERMISSIONS } from "@hooks/usePermissionsForm";
-import PendingChangesContext from "@amp-components/VersionControl/PendingChangesContext";
 
 export type Props = {
   entityId: string;
@@ -17,12 +16,10 @@ export type Props = {
 
 const useEntityPermissionField = ({
   entityId,
-  actionDisplayName,
   permissionField,
   permission,
   onDeleteField,
 }: Props) => {
-  const pendingChangesContext = useContext(PendingChangesContext);
 
   const availableRoles = useMemo((): models.AppRole[] => {
     if (!permission.permissionRoles) {
@@ -41,7 +38,7 @@ const useEntityPermissionField = ({
   /**@todo: handle  errors */
   const [updateRole] = useMutation(UPDATE_ROLES, {
     onCompleted: (data) => {
-      pendingChangesContext.addEntity(entityId);
+      //pendingChangesContext.addEntity(entityId);
     },
     update(cache, { data: { updateEntityPermissionFieldRoles } }) {
       const queryData = cache.readQuery<{

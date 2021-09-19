@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import * as models from "models";
 import useActionRole from "@hooks/useActionRole";
 import { Tag } from 'antd';
@@ -11,6 +11,11 @@ type Props = {
 };
 
 export const ActionRole = ({ role, onClick, selected }: Props) => {
+  
+  useEffect(()=>{
+    setIsSelected(selected);
+  }, [selected]);
+  
   const [isSelected, setIsSelected] = useState(selected);
 
   const { handleClick } = useActionRole({role, onClick});

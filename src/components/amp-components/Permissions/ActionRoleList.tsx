@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import * as models from "models";
 import { ActionRole } from "@amp-components/Permissions/ActionRole";
 import useActionRoleList from "@hooks/useActionRoleList";
@@ -29,6 +29,10 @@ export const ActionRoleList = ({
     debounceMS,
     onChange
   });
+
+  useEffect(()=>{
+
+  }, [selectedRoleList]);
 
   return (
     <>

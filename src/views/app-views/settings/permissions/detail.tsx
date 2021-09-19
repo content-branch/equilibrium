@@ -15,7 +15,6 @@ const Detail = ({ match }: any) => {
 		error,
 		errorMessage,
 		updateError,
-		handleSubmit
 	} = useEntity({match, entityId, application});
 
 	useEffect(() => {

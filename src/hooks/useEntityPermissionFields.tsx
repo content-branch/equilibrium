@@ -1,11 +1,10 @@
-import { useCallback, useMemo, useContext } from "react";
+import { useCallback, useMemo } from "react";
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { remove, cloneDeep } from "lodash";
 
 import { GET_ENTITY_PERMISSIONS } from "@hooks/usePermissionsForm";
 import { GET_FIELDS } from "@hooks/useEntityFieldList";
 import * as models from "models";
-import PendingChangesContext from "@amp-components/VersionControl/PendingChangesContext";
 
 type TData = {
   entity: models.Entity;
@@ -25,7 +24,6 @@ const useEntityPermissionFields = ({
   permission,
 }: Props) => {
   
-  const pendingChangesContext = useContext(PendingChangesContext);
 
   const selectedFieldIds = useMemo((): Set<string> => {
     return new Set(permission.permissionFields?.map((field) => field.field.id));
@@ -42,7 +40,7 @@ const useEntityPermissionFields = ({
   /**@todo: handle  errors */
   const [addField] = useMutation(ADD_FIELD, {
     onCompleted: (data) => {
-      pendingChangesContext.addEntity(entityId);
+      //pendingChangesContext.addEntity(entityId);
     },
     update(cache, { data: { addEntityPermissionField } }) {
       const queryData = cache.readQuery<{
@@ -88,7 +86,7 @@ const useEntityPermissionFields = ({
   /**@todo: handle  errors */
   const [deleteField] = useMutation(DELETE_FIELD, {
     onCompleted: (data) => {
-      pendingChangesContext.addEntity(entityId);
+      //pendingChangesContext.addEntity(entityId);
     },
     update(cache, { data: { deleteEntityPermissionField } }) {
       const queryData = cache.readQuery<{
