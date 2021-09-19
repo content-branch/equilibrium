@@ -1,72 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import { List, Switch, PageHeader, Row, Col, Tag, Divider} from 'antd';
+import React, { useEffect } from 'react';
+import { List, PageHeader, Row, Col, Divider, message, Spin, Typography} from 'antd';
 import { 
-	EyeOutlined, 
-	AppstoreAddOutlined, 
-	DeleteOutlined,
-	EditOutlined,
-	FileSearchOutlined,
 	ClusterOutlined,
 	AimOutlined
 } from '@ant-design/icons';
-import Icon from 'components/util-components/Icon';
-import Flex from 'components/shared-components/Flex';
-// import { Radio, Form } from "formik-antd";
-import { Radio } from "antd"; 
-import { Form } from "formik";
+import { ENTITY_ACTIONS } from "@amp-components/Entity/constants";
+import usePermissionsForm from "@hooks/usePermissionsForm";
+import { ActionRoleListContainer } from "@amp-components/Permissions/ActionRoleListContainer";
+import { PermissionTypeContainer } from "@amp-components/Permissions/PermissionTypeContainer";
+import { EntityPermissionAction  } from "@amp-components/Permissions/EntityPermissionAction";
 import './AdvancedPermission.scss';
 
-const AdvancedPermission = ({entityId, isSource}:any) => {
-	const [config, setConfig] = useState([
-		{
-			key:'',
-			title:'',
-			icon:EyeOutlined,
-			desc:'',
-			allow:false
-		}
-	]);
+const { Text } = Typography;
 
-	useEffect(()=>{
-		setConfig([
-			{
-				key: 'key-mentions',
-				title: 'View',
-				icon: EyeOutlined ,
-				desc: 'All roles selected. Set specific permissions to special fields',
-				allow: false
-			},
-			{
-				key: 'key-follows',
-				title: 'Create',
-				icon: AppstoreAddOutlined ,
-				desc: 'All roles selected. Set specific permissions to special fields',
-				allow: true
-			},
-			{
-				key: 'key-comment',
-				title: 'Update',
-				icon: EditOutlined ,
-				desc: 'All roles selected. Set specific permissions to special fields',
-				allow: true
-			},
-			{
-				key: 'key-email',
-				title: 'Delete',
-				icon: DeleteOutlined,
-				desc: 'All roles selected. Set specific permissions to special fields',
-				allow: false
-			},
-			{
-				key: 'key-product',
-				title: 'Search',
-				icon: FileSearchOutlined,
-				desc: 'All roles selected. Set specific permissions to special fields',
-				allow: true
-			}
-		]);
-	}, []);
-	
+const AdvancedPermission = ({entityId, isSource}:any) => {	
+	const {
+		loading,
+		error,
+		errorMessage,
+		permissionsByAction
+	  } = usePermissionsForm({
+		availableActions:ENTITY_ACTIONS,
+		entityId,
+	});
+
+	useEffect(() => {
+		if(error){
+		  message.error(errorMessage);
+		}
+	}, [error, errorMessage]);
 		
 	return (
 		<>
@@ -76,86 +38,59 @@ const AdvancedPermission = ({entityId, isSource}:any) => {
 			/>
 			<Row>
 				<Col span={7}>
-				<List
-					itemLayout="vertical"
-					dataSource={config}
-					size="large"
-					header="Operation"
-					bordered={false}
-					renderItem={item => (
-						<List.Item className="operation-item">
-							<Flex justifyContent="between" alignItems="center" className="w-100 operation-child">
-								<span className="d-flex align-items-center">
-									<Icon className="h2 mb-0 text-primary" type={item.icon} />
-									<span className="ml-3 ">
-										<h5 className="mb-0">{item.title}</h5>
-									</span>
-								</span>
-								<span className="ml-3">
-									<Switch defaultChecked={item.allow} onChange={
-										checked => {
-											const checkedItem = config.map( elm => {
-												if(elm.key === item.key) {
-													elm.allow = checked
-												}
-												return elm
-											})
-											setConfig([
-													...checkedItem
-												]
-											)
-										}
-									} />
-								</span>
-							</Flex>
-						</List.Item>
-					)}
-				/>
-
+					<List
+						itemLayout="vertical"
+						size="large"
+						header={<Text type="secondary">Actions</Text>}
+					>
+							{loading
+							? <Spin />
+							: ENTITY_ACTIONS.map((action) => (
+								<EntityPermissionAction 
+									key={action.action}
+									entityId={entityId}
+									permission={permissionsByAction[action.action]}
+									permissionAction={action}
+								/>
+							))}
+					</List>
 				</Col>
 				<Col span={7} offset={1}>
-				{/* <Form > */}
-				<List
-					itemLayout="vertical"
-					dataSource={config}
-					size="large"
-					header="Authorization type"
-					bordered={false}
-					renderItem={item => (
-						<List.Item className="granular-item">
-							{/* <Form.Item  name={`${item.key}-granular`}> */}
-								<Flex justifyContent="between" alignItems="center" className="w-100">
-									<Radio.Group name={`${item.key}-granular`} defaultValue="a" buttonStyle="solid">
-										<Radio.Button name={`${item.key}-granular`} value="a">All Roles</Radio.Button>
-										<Radio.Button name={`${item.key}-granular`} value="b">Granular</Radio.Button>
-									</Radio.Group>
-								</Flex>
-							{/* </Form.Item> */}
-						</List.Item>
-					)}
-				/>
-				{/* </Form> */}
-			</Col>
-			<Col span={7} offset={1}>
-				<List
-					itemLayout="vertical"
-					dataSource={config}
-					size="large"
-					header='Selected Roles'
-					renderItem={item => (
-						<List.Item className="taglist-item p-3">
-							<Flex justifyContent="start" alignItems="center" className="w-100 mb-1 mt-2 ">
-								<Tag >Employee</Tag>
-								<Tag color='blue'>User</Tag>
-								<Tag>Reception</Tag>
-								<Tag >Admin</Tag>
-							</Flex>
-						</List.Item>
-					)}
-					bordered={false}
-				/>
-
-			</Col>
+					<List
+						itemLayout="vertical"
+						size="large"
+						header={<Text type="secondary">Permission Type</Text>}
+					>
+							{loading
+							? <Spin />
+							: ENTITY_ACTIONS.map((action) => (
+								<PermissionTypeContainer 
+									key={action.action}
+									entityId={entityId}
+									permission={permissionsByAction[action.action]}
+									permissionAction={action}
+								/>
+							))}
+						</List>
+				</Col>
+				<Col span={7} offset={1}>
+					<List
+						itemLayout="vertical"
+						size="large"
+						header={<Text type="secondary">Selected Roles</Text>}
+					>
+							{loading
+							? <Spin />
+							: ENTITY_ACTIONS.map((action) => (
+								<ActionRoleListContainer 
+									key={action.action}
+									entityId={entityId}
+									permission={permissionsByAction[action.action]}
+									permissionAction={action}
+								/>
+							))}
+					</List>
+				</Col>
 			</Row>
 			<Divider />
 			<PageHeader

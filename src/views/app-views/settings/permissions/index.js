@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { SearchOutlined, SafetyCertificateTwoTone } from '@ant-design/icons';
+import { SearchOutlined, ProfileTwoTone } from '@ant-design/icons';
 import { Menu, Col, Spin, Row, Tag, Input } from 'antd';
 import { Redirect, Route, Switch, Link} from 'react-router-dom';
 import InnerAppLayout from 'layouts/inner-app-layout';
@@ -56,7 +56,7 @@ const PermissionsOption = ({ match, location}) => {
 							<Menu.Item key={`${match.url}/${entity.id}`} title={entity.displayName}>
 								<Row className={`${CLASS_NAME}__group-title`} align="middle">
 									<Col span={18}>
-										<SafetyCertificateTwoTone twoToneColor='#52c41a' />
+										<ProfileTwoTone  twoToneColor='#108ee9' />
 										Permissions for {entity.displayName}
 									</Col>
 									<Col span={5}>

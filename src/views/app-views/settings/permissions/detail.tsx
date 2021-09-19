@@ -48,7 +48,7 @@ const Detail = ({ match }: any) => {
 				entity ?
 				(
 					<>
-						<AdvancedPermission />
+						<AdvancedPermission entityId={entityId}/>
 						<Divider />
 					</>
 				):

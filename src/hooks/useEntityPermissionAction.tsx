@@ -3,7 +3,6 @@ import { gql, useMutation, useQuery } from "@apollo/client";
 import { isEmpty, cloneDeep } from "lodash";
 import difference from "@extra-set/difference";
 
-import "./EntityPermissionAction.scss";
 import * as models from "models";
 import * as permissionTypes from "@amp-components/Permissions/types";
 
@@ -11,6 +10,7 @@ import { GET_ENTITY_PERMISSIONS } from "@hooks/usePermissionsForm";
 import { GET_ROLES } from "@hooks/useRoleList";
 
 import PendingChangesContext from "@amp-components/VersionControl/PendingChangesContext";
+import { getLSCurrentApplication } from "@hooks/useApplicationSelector";
 
 type TData = {
   appRoles: models.AppRole[];
@@ -20,17 +20,15 @@ export type Props = {
   entityId: string;
   permission: models.EntityPermission;
   permissionAction: permissionTypes.PermissionAction;
-  entityDisplayName: string;
-  applicationId: string;
 };
 
 const useEntityPermissionAction = ({
   entityId,
   permission,
   permissionAction: { action: actionName, actionDisplayName, canSetFields },
-  entityDisplayName,
-  applicationId,
 }: Props) => {
+
+  const applicationId = getLSCurrentApplication();
 
   const pendingChangesContext = useContext(PendingChangesContext);
 
@@ -115,6 +113,8 @@ const useEntityPermissionAction = ({
 
   const handleChangeType = useCallback(
     (type) => {
+      type = type.target.value;
+      console.log('Entering here with type ', type);
       updatePermission({
         variables: {
           data: {

@@ -3,7 +3,7 @@ import { gql, useQuery } from "@apollo/client";
 
 import { formatError } from "util/error";
 import * as models from "models";
-import { preparePermissionsByAction } from "@amp-components/Permissions/permissionUtil";
+import { preparePermissionsByAction } from "util/permissionUtil";
 
 import * as permissionsTypes from "@amp-components/Permissions/types";
 
@@ -13,16 +13,12 @@ type TData = {
 
 export type Props = {
   availableActions: permissionsTypes.PermissionAction[];
-  applicationId: string;
   entityId: string;
-  objectDisplayName: string;
 };
 
 const usePermissionsForm = ({
   availableActions,
-  applicationId,
   entityId,
-  objectDisplayName
 }: Props) => {
 
   const { data, loading, error } = useQuery<TData>(GET_ENTITY_PERMISSIONS, {
