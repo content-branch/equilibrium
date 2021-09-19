@@ -32,6 +32,7 @@ export const EntityPermissionAction = ({
   entityId,
   permission,
   permissionAction: { action: actionName, actionDisplayName, canSetFields },
+  isSource,
 }: Props) => {
   
   const { 
@@ -50,6 +51,7 @@ export const EntityPermissionAction = ({
           <Icon className="h2 mb-0 text-primary" type={getIcon(actionDisplayName)} />
           <span className="ml-3 ">
             <h5 className="mb-0">{actionDisplayName}</h5>
+            {isSource && <p> Set specific permissions to special fields role by role <a href={`/app/settings/permissions/${entityId}`}>here</a></p>}
           </span>
         </span>
         <span className="ml-3">

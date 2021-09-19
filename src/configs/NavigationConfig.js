@@ -119,8 +119,8 @@ const workspacesNavTree = [{
   icon: ApartmentOutlined,
   breadcrumb: true,
   submenu: [
-    ...appNavTree,
     ...entitiesBoardNavTree,
+    ...appNavTree,
     {
       key: 'workspace-settings',
       path: `${APP_PREFIX_PATH}/workspaces`,

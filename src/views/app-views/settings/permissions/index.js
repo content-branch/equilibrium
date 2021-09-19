@@ -24,7 +24,7 @@ const PermissionsOption = ({ match, location}) => {
 		<>
 			<Row>
 				<Menu
-					style={{ width: 450 }}
+					style={{ width: 400 }}
 					mode="inline"
 					selectedKeys={[location.pathname]}
 				>
@@ -92,7 +92,7 @@ export class Permissions extends Component {
 		return (
 			<InnerAppLayout 
 				pageHeader={true}
-				sideContentWidth={500}
+				sideContentWidth={450}
 				sideContent={<PermissionsOption {...this.props}/>}
 				mainContent={<PermissionsContent {...this.props}/>}
 			/>

@@ -64,7 +64,7 @@ const Detail = ({ match }: any) => {
 						<Row className={`fields-section`}>
 							<Fields entityId={ entity?.id }/>
 						</Row>
-						<Permission entityId={ entity?.id } isSource />
+						<Permission entityId={ entity?.id } />
 						<Divider />
 						<PageHeader
 							className="site-section-header"

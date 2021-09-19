@@ -20,6 +20,7 @@ export type Props = {
   entityId: string;
   permission: models.EntityPermission;
   permissionAction: permissionTypes.PermissionAction;
+  isSource?:boolean;
 };
 
 const useEntityPermissionAction = ({
@@ -39,7 +40,7 @@ const useEntityPermissionAction = ({
   /**@todo: handle  errors */
   const [updatePermission] = useMutation(UPDATE_PERMISSION, {
     onCompleted: (data) => {
-      pendingChangesContext.addEntity(entityId);
+     // pendingChangesContext.addEntity(entityId);
     },
   });
 
