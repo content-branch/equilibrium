@@ -3,13 +3,13 @@ import { gql, useMutation, Reference } from "@apollo/client";
 import * as models from "models";
 import { useHistory } from "react-router-dom";
 import PendingChangesContext from "@amp-components/VersionControl/PendingChangesContext";
+import { getLSCurrentApplication } from "@hooks/useApplicationSelector";
 
 type DType = {
   deleteEntity: { id: string };
 };
 
 export type Props = {
-  applicationId: string;
   entity: models.Entity;
   onDelete?: () => void;
   onError: (error: Error) => void;
@@ -17,13 +17,12 @@ export type Props = {
 
 const useEntityListItem = ({
   entity,
-  applicationId,
   onDelete,
   onError,
-}: Props) => {
+}: any) => {
   const pendingChangesContext = useContext(PendingChangesContext);
   const history = useHistory();
-
+  const applicationId = getLSCurrentApplication();
   const [confirmDelete, setConfirmDelete] = useState<boolean>(false);
 
   const [deleteEntity, { loading: deleteLoading }] = useMutation<DType>(
@@ -76,11 +75,10 @@ const useEntityListItem = ({
     history.push(`/${applicationId}/entities/${entity.id}`);
   }, [history, applicationId, entity]);
 
-  const [latestVersion] = entity.versions;
+  //const [latestVersion] = entity.versions;
 
   const result = {
     deleteLoading,
-    latestVersion,
     confirmDelete,
     handleRowClick,
     handleConfirmDelete,

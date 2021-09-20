@@ -1,19 +1,32 @@
-import React, {Component} from 'react'
-import { SearchOutlined, DatabaseTwoTone } from '@ant-design/icons';
-import { Menu, Col, Spin, Row, Tag, Input } from 'antd';
+import React, {Component, useEffect} from 'react'
+import { SearchOutlined, DatabaseTwoTone} from '@ant-design/icons';
+import { Menu, Col, Spin, Row, Tag, Input, message } from 'antd';
 import { Redirect, Route, Switch, Link} from 'react-router-dom';
 import InnerAppLayout from 'layouts/inner-app-layout';
 import Detail from './detail';
 import Entities from './entities';
 import useEntityList from "@hooks/useEntityList";
 import LockStatusIcon from "@amp-components/VersionControl/LockStatusIcon";
-
+import NewEntity from "@amp-components/Entity/NewEntity";
+import './ContentModel.scss';
 
 const CLASS_NAME = "entity-list";
 
 const ContentModelOption = ({ match, location}) => {
 
-	const {loading, data, handleSearchChange } = useEntityList({ match });
+	const {
+		loading,
+		data,
+		error,
+		errorMessage,
+		handleSearchChange
+	  } = useEntityList({ match });
+
+	useEffect(() => {
+		if(error){
+			message.error(errorMessage);
+		}
+	}, [error, errorMessage]);
 
 	const searchOnChange = e => {
 		const query = e.target.value;
@@ -68,6 +81,9 @@ const ContentModelOption = ({ match, location}) => {
 								<Link to={entity.id} />
 							</Menu.Item>
 						))}
+						<Menu.Item key='add-entity' className="add-entity">
+							<NewEntity />
+						</Menu.Item>
 					</Menu.ItemGroup>
 				</Menu>
 			</Row>

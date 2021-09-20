@@ -4,36 +4,33 @@ import { gql, useMutation, Reference } from "@apollo/client";
 import { pascalCase } from "pascal-case";
 import { formatError } from "util/error";
 import * as models from "models";
-import {
-  generatePluralDisplayName,
-  generateSingularDisplayName,
-} from "../Components/PluralDisplayNameField";
 import PendingChangesContext from "@amp-components/VersionControl/PendingChangesContext";
-import { useTracking } from "util/analytics";
+import {getLSCurrentApplication} from "@hooks/useApplicationSelector";
+import pluralize from "pluralize";
 
 export type CreateEntityType = Omit<models.EntityCreateInput, "app">;
+
+export function generatePluralDisplayName(displayName: string): string {
+  return pluralize(displayName);
+}
+
+export function generateSingularDisplayName(displayName: string): string {
+  return pluralize.singular(displayName);
+}
 
 type DType = {
   createOneEntity: models.Entity;
 };
 
-export type Props = {
-  applicationId: string;
-};
-
-const useNewEntity = ({ applicationId }: Props) => {
-  const { trackEvent } = useTracking();
+const useNewEntity = () => {
   const pendingChangesContext = useContext(PendingChangesContext);
+  const applicationId = getLSCurrentApplication();
 
   const [createEntity, { error, data, loading }] = useMutation<DType>(
     CREATE_ENTITY,
     {
       onCompleted: (data) => {
         pendingChangesContext.addEntity(data.createOneEntity.id);
-        trackEvent({
-          eventName: "createEntity",
-          entityName: data.createOneEntity.displayName,
-        });
       },
       update(cache, { data }) {
         if (!data) return;
@@ -90,7 +87,7 @@ const useNewEntity = ({ applicationId }: Props) => {
 
   useEffect(() => {
     if (data) {
-      history.push(`/${applicationId}/entities/${data.createOneEntity.id}`);
+      //history.push(`/${applicationId}/entities/${data.createOneEntity.id}`);
     }
   }, [history, data, applicationId]);
 
