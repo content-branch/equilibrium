@@ -50,7 +50,7 @@ function useApplicationSelector(redirection?:string) {
 
 export default useApplicationSelector;
 
-const setLSCurrentApplication = (applicationId: string) => {
+export const setLSCurrentApplication = (applicationId: string) => {
   localStorage.setItem(CURRENT_APPLICATION, applicationId);
 }
 

@@ -149,6 +149,7 @@
 
 	"sidenav.role":"Roles & Permissions",
 	"sidenav.role.permission":"Permissions",
+	"sidenav.role.roles":"Roles",
 	"sidenav.role.token":"API Tokens",
 	"sidenav.settings.user":"User",
 	"sidenav.settings":"Settings",

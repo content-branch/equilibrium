@@ -5,6 +5,7 @@ import { GET_APPLICATIONS } from "@hooks/useApplicationList";
 import { formatError } from "util/error";
 import * as models from "models";
 import { useTracking } from "util/analytics";
+import { setLSCurrentApplication } from "./useApplicationSelector";
 
 
 type Values = {
@@ -77,7 +78,8 @@ const useNewApplication = () => {
 
   useEffect(() => {
     if (data) {
-      history.push(`/${data.createApp.id}`);
+      setLSCurrentApplication(data.createApp.id);
+      history.push(`/app/entities`);
     }
   }, [history, data]);
 

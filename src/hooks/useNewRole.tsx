@@ -3,13 +3,14 @@ import { gql, useMutation, Reference } from "@apollo/client";
 import { camelCase } from "camel-case";
 import { formatError } from "util/error";
 import * as models from "models";
+import { getLSCurrentApplication } from "@hooks/useApplicationSelector";
 
 export type Props = {
-  applicationId: string;
   onRoleAdd?: (role: models.AppRole) => void;
 };
 
-const useNewRole = ({ onRoleAdd, applicationId }: Props) => {
+const useNewRole = ({ onRoleAdd }: Props) => {
+  const applicationId = getLSCurrentApplication();
   const [createRole, { error, loading }] = useMutation(CREATE_ROLE, {
     update(cache, { data }) {
       if (!data) return;

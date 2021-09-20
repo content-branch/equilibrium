@@ -4,6 +4,7 @@ import { isEmpty } from "lodash";
 import { gql, useQuery } from "@apollo/client";
 import { formatError } from "util/error";
 import * as models from "models";
+import { getLSCurrentApplication } from "@hooks/useApplicationSelector";
 
 type TData = {
   appRoles: models.AppRole[];
@@ -12,11 +13,11 @@ type TData = {
 const DATE_CREATED_FIELD = "createdAt";
 
 export type Props = {
-  applicationId: string;
   selectFirst?: boolean;
 };
 
-const useRoleList = ({ applicationId, selectFirst = false }: Props) => {
+const useRoleList = ({ selectFirst = false }: Props) => {
+    const applicationId = getLSCurrentApplication();
     const [searchPhrase, setSearchPhrase] = useState<string>("");
 
     const handleSearchChange = useCallback(
@@ -47,10 +48,10 @@ const useRoleList = ({ applicationId, selectFirst = false }: Props) => {
 
     const handleRoleChange = useCallback(
       (role: models.AppRole) => {
-        const fieldUrl = `/${applicationId}/roles/${role.id}`;
-        history.push(fieldUrl);
+        //const fieldUrl = `/${applicationId}/roles/${role.id}`;
+        //history.push(fieldUrl);
       },
-      [history, applicationId]
+      []
     );
 
     useEffect(() => {

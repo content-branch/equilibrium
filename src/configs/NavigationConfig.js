@@ -21,6 +21,7 @@ import {
   HeatMapOutlined,
   UnlockOutlined,
   IdcardOutlined,
+  ClusterOutlined,
   ReadOutlined,
   ProfileOutlined,
   BookOutlined,
@@ -213,6 +214,14 @@ const roleNavTree = [{
   icon: SafetyCertificateOutlined,
   breadcrumb: true,
   submenu: [
+    {
+      key: 'settings-role-roles',
+      path: `${APP_PREFIX_PATH}/settings/roles`,
+      title: 'sidenav.role.roles',
+      icon: ClusterOutlined,
+      breadcrumb: true,
+      submenu: []
+    },
     {
       key: 'settings-role-permissions',
       path: `${APP_PREFIX_PATH}/settings/permissions`,

@@ -46,6 +46,7 @@ export const AppViews = () => {
         <PrivateRoute path={`${APP_PREFIX_PATH}/version/sync`}                    component={lazy(() => import(`./version/sync`))} />
         <PrivateRoute path={`${APP_PREFIX_PATH}/version/build-status`}            component={lazy(() => import(`./version/build`))} />
 
+        <PrivateRoute path={`${APP_PREFIX_PATH}/settings/roles`}                  component={lazy(() => import(`./settings/roles`))} />
         <PrivateRoute path={`${APP_PREFIX_PATH}/settings/permissions`}            component={lazy(() => import(`./settings/permissions`))} />
         <PrivateRoute path={`${APP_PREFIX_PATH}/settings/api-tokens`}             component={lazy(() => import(`./settings/tokens`))} />
         <PrivateRoute path={`${APP_PREFIX_PATH}/settings/edit-profile`}           component={lazy(() => import(`./settings/user`))} />
