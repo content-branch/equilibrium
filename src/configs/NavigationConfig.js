@@ -24,7 +24,6 @@ import {
   ClusterOutlined,
   ReadOutlined,
   ProfileOutlined,
-  BookOutlined,
   BulbOutlined,
   UserOutlined
 } from '@ant-design/icons';
@@ -266,14 +265,14 @@ const settingsNavTree = [{
 //Support
 const supportNavTree = [{
   key: 'support',
-  path: `${APP_PREFIX_PATH}/support`,
+  path: `${APP_PREFIX_PATH}/support/`,
   title: 'sidenav.docs.support',
   icon: QuestionOutlined,
   breadcrumb: true,
   submenu: [
     {
       key: 'support-start',
-      path: `${APP_PREFIX_PATH}/home`,
+      path: `${APP_PREFIX_PATH}/support/getting-started`,
       title: 'sidenav.docs.tutorial',
       icon: BulbOutlined,
       breadcrumb: true,
@@ -281,7 +280,7 @@ const supportNavTree = [{
     },
     {
       key: 'support-dev',
-      path: `${APP_PREFIX_PATH}/home`,
+      path: `${APP_PREFIX_PATH}/support/documentation/dev-env`,
       title: 'sidenav.docs.dev',
       icon: ReadOutlined,
       breadcrumb: true,
@@ -289,27 +288,27 @@ const supportNavTree = [{
     },
     {
       key: 'support-changelog',
-      path: `${APP_PREFIX_PATH}/home`,
+      path: `${APP_PREFIX_PATH}/support/documentation/changelog`,
       title: 'sidenav.docs.changelog',
       icon: ProfileOutlined,
       breadcrumb: true,
       submenu: []
     },
-    {
-      key: 'support-cms',
-      path: `${APP_PREFIX_PATH}/home`,
-      title: 'sidenav.docs.cms',
-      icon: BookOutlined,
-      breadcrumb: true,
-      submenu: []
-    }
+    // {
+    //   key: 'support-cms',
+    //   path: `${APP_PREFIX_PATH}/home`,
+    //   title: 'sidenav.docs.cms',
+    //   icon: BookOutlined,
+    //   breadcrumb: true,
+    //   submenu: []
+    // }
   ]
 }];
 
 //Docs
 const docsNavTree = [{
   key: 'docs',
-  path: `${APP_PREFIX_PATH}/home`,
+  path: `${APP_PREFIX_PATH}/docs`,
   title: 'sidenav.docs',
   icon: '',
   breadcrumb: true,

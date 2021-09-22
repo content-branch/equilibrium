@@ -15,14 +15,14 @@ export const DEFAULT_PAGE_SOURCE = "default";
 
 export const SIGN_IN_PAGE_CONTENT: PageContentOptions = {
   rc: {
-    name: "Recast",
-    title: "Convert your excel sheet into Node.js app",
+    name: "",
+    title: "",
     subTitle: "",
     logo: '',
-    message: "Recast is built on and powered by Amplication.",
+    message: "",
   },
   [DEFAULT_PAGE_SOURCE]: {
-    name: "Amplication",
+    name: "Equilibrium",
     title: "Instantly generate quality Node.js apps",
     subTitle: "Just code what matters.",
     logo: '',
